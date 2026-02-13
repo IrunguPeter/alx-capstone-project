@@ -2,7 +2,4 @@
 import data
 
 
-print(data.CPU)
-print(data.RAM)
-print(data.Storage)
-print(data.GPU)
+print(f"CPU: {data.CPU}, RAM: {data.RAM}, Storage: {data.Storage}, GPU: {data.GPU}")
