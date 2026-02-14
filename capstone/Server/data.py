@@ -1,4 +1,0 @@
-CPU= "AMD Ryzen 5 7600"
-RAM= "16 GB"
-Storage= "512 GB NVMe SSD"
-GPU= "NVIDIA GeForce RTX 3060"
