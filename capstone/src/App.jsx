@@ -1,8 +1,10 @@
 import Header from './components/Header';
+import Navbar from './components/Navbar';
 function App() {
   return (
     <div className="App">
-      <Header/>
+      <Navbar />
+      <Header />
 
       <div className="p-8 bg-white shadow-xl rounded-2xl border border-blue-200">
         <h1 className="text-2xl font-bold text-blue-600">We Help you choose the best PC parts for your build</h1>
