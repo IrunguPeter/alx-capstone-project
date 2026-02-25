@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Navbar = () => {
-  const navLinks = ['Dashboard', 'Team', 'Projects', 'Calendar'];
+  const navLinks = ['Dashboard'];
 
   return (
     <nav className="bg-[#111827] px-6 py-3 flex items-center justify-between border-b border-gray-800">
@@ -37,7 +37,7 @@ const Navbar = () => {
         {/* Quick Action Button */}
         <button className="flex items-center bg-[#6366F1] hover:bg-[#4F46E5] text-white px-4 py-2 rounded-md text-sm font-semibold transition-shadow">
           <span className="mr-2 text-lg leading-none">+</span>
-          New Job
+          New Build
         </button>
 
         {/* Notification Bell */}
