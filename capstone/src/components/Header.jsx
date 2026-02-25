@@ -1,6 +1,26 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 
 const Header = () => {
+  const Url= `https://api.api-ninjas.com/v1/dadjokes`;
+
+  const [joke, setJoke] = useState('');
+
+  useEffect(() => {
+    const fetchData=async()=>{
+      const response = await fetch(Url,{
+        headers: {
+          "x-API-Key": process.env.X_API_KEY
+        }
+      });
+      console.log(response);
+      const data = await response.json();
+      setJoke(data.joke);
+    };
+    fetchData();
+  },[]);
+
+
   return (
     <header className="header text-center p-6 bg-blue-100 shadow-md justify-center">
       <h1 className="text-2xl font-bold text-blue-600">Welcome to PC Part Picker</h1>
@@ -11,6 +31,7 @@ const Header = () => {
           <li><a href="/contact">Contact</a></li>
         </ul>
       </nav>
+
     </header>
     
   );
