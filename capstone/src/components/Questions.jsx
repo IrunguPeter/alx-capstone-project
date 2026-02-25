@@ -16,6 +16,7 @@ const Questions = () =>{
 
     return (
         <form onSubmit={handleSubmit}>
+            <h1>Hello there</h1>
             <input type="text" name="Use" value={formData.name} onchange={handleChange}/>
             <button type="submit">Use</button>
         </form>
