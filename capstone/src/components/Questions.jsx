@@ -15,11 +15,13 @@ const Questions = () =>{
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>Hello there</h1>
-            <input type="text" name="Use" value={formData.name} onchange={handleChange}/>
-            <button type="submit">Use</button>
-        </form>
+        <div className="p-8 bg-gray-100 rounded-lg shadow-md justify-center">
+            <form onSubmit={handleSubmit} className="p-6 bg-gray-100 rounded-lg shadow-md justify-center">
+                <h1>Hello there</h1>
+                <input type="text" name="Use" value={formData.Use} onChange={handleChange}/>
+                <button type="submit">Use</button>
+            </form>
+        </div>
     );
 
 };
