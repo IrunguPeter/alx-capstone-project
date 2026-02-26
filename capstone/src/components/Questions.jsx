@@ -38,7 +38,7 @@ const Questions = () => {
         className="border p-2 w-full"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
-        placeholder="Ask for your $1500 PC build..."
+        placeholder="Ask for a $1500 PC build..."
       />
       <button 
         onClick={handleSubmit}

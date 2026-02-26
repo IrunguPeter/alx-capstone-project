@@ -39,7 +39,7 @@ function App() {
       
       {showQuestions && (
         <div className="bg-white rounded overflow-hidden shadow-md mt-10 p-5">
-          <img src="./assets/react.svg" alt="GamingPC Picture" className="w-20 mb-4"/>
+          
           <div>
             
             <Questions workflows={WORKFLOW_DATA} />
