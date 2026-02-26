@@ -7,7 +7,7 @@ const Questions = () => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    const API_KEY = "AIzaSyB0uLCaMNi_s1G2xp7gJlL0n_ObsXtspPY";
+    const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
     const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${API_KEY}`;
 
     try {
