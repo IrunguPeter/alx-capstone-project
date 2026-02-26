@@ -1,29 +1,60 @@
-import react from 'react'
-import { useState } from 'react'
+import { useState } from 'react';
 
-const Questions = () =>{
-    const [formData,setFormData]=useState({Use:'', Operatingsystem:'',portability:'',price:''});
+const Questions = () => {
+  const [prompt, setPrompt] = useState('');
+  const [response, setResponse] = useState('');
+  const [loading, setLoading] = useState(false);
 
-    const handleChange = (e)=>{
-        const {name,value}= e.target;
-        setFormData(prevState=>({...prevState,[name]:value}));
-    };
+  const handleSubmit = async () => {
+    setLoading(true);
+    const API_KEY = "AIzaSyB0uLCaMNi_s1G2xp7gJlL0n_ObsXtspPY";
+    const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${API_KEY}`;
 
-    const handleSubmit =(e)=>{
-        e.preventDefault();
-        console.log(formData);
-    };
+    try {
+      const res = await fetch(URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }]
+        })
+      });
 
-    return (
-        <div className="p-8 bg-gray-100 rounded-lg shadow-md justify-center">
-            <form onSubmit={handleSubmit} className="p-6 bg-gray-100 rounded-lg shadow-md justify-center">
-                <h1>Hello there</h1>
-                <input type="text" name="Use" value={formData.Use} onChange={handleChange}/>
-                <button type="submit">Use</button>
-            </form>
+      const data = await res.json();
+      
+      // The crucial path for Gemini responses
+      const text = data.candidates[0].content.parts[0].text;
+      setResponse(text);
+    } catch (error) {
+      console.error("Error fetching Gemini:", error);
+      setResponse("Failed to get build advice. Check console.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="p-4">
+      <textarea 
+        className="border p-2 w-full"
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+        placeholder="Ask for your $1500 PC build..."
+      />
+      <button 
+        onClick={handleSubmit}
+        className="bg-blue-600 text-white px-4 py-2 mt-2"
+        disabled={loading}
+      >
+        {loading ? 'Thinking...' : 'Get Build Advice'}
+      </button>
+      
+      {response && (
+        <div className="mt-4 p-4 bg-gray-100 rounded">
+          <pre className="whitespace-pre-wrap">{response}</pre>
         </div>
-    );
-
+      )}
+    </div>
+  );
 };
 
 export default Questions;
