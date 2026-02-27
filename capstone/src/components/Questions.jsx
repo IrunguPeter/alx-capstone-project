@@ -3,21 +3,22 @@ import { useState } from 'react';
 const Questions = () => {
   const [budget, setBudget] = useState('1500');
   const [loading, setLoading] = useState(false);
-  const [recommendation, setRecommendation] = useState('');
+  const [build, setBuild] = useState(null);
 
   const GEMINI_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
   const handleGetBuild = async () => {
     setLoading(true);
-    setRecommendation('');
+    setBuild(null);
     
     try {
       const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_KEY}`;
       
-      const prompt = `You are a professional PC hardware expert in February 2026. 
-      Create a highly optimized gaming PC build for exactly $${budget}. 
-      Include: CPU, GPU (Prioritize RTX 50-series or RX 9000), RAM (DDR5), Storage, Motherboard, PSU, and Case. 
-      Format the response as a clean Markdown table followed by a 2-sentence explanation of why this build is the "best bang for buck" right now.`;
+      // We ask Gemini to return ONLY a JSON object for easy parsing
+      const prompt = `Return a JSON object for a $${budget} PC build in Feb 2026. 
+      Use exactly these keys: "CPU", "GPU", "SSD", "RAM", "Motherboard", "Case", "Powersupply Unit".
+      Values should be the specific part name and its estimated 2026 price in brackets.`;
+
 
       const response = await fetch(geminiUrl, {
         method: 'POST',
@@ -28,49 +29,59 @@ const Questions = () => {
       });
 
       const data = await response.json();
-      const advice = data.candidates[0].content.parts[0].text;
-      setRecommendation(advice);
+      const rawText = data.candidates[0].content.parts[0].text;
+      
+      // Clean the string in case Gemini adds markdown code blocks
+      const cleanJson = rawText.replace(/```json|```/g, "").trim();
+      setBuild(JSON.parse(cleanJson));
 
     } catch (error) {
-      console.error("Gemini Error:", error);
-      setRecommendation("Error: Failed to get recommendation. Check your API key.");
+      console.error("Build Error:", error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-xl border border-slate-100 font-sans">
-      <h2 className="text-3xl font-extrabold text-slate-800 mb-2">AI Build Architect</h2>
-      <p className="text-slate-500 mb-8">Generate a custom 2026 PC parts list in seconds.</p>
-
-      <div className="flex flex-col sm:flex-row gap-4 mb-10">
-        <div className="flex-1">
-          <label className="block text-xs font-bold uppercase text-slate-400 mb-1 ml-1">Total Budget</label>
-          <div className="relative">
-            <span className="absolute left-4 top-3 text-slate-400 font-bold">$</span>
-            <input 
-              type="number" 
-              value={budget} 
-              onChange={(e) => setBudget(e.target.value)}
-              className="w-full pl-8 pr-4 py-3 bg-slate-50 border-2 border-slate-100 rounded-xl focus:border-indigo-500 focus:ring-0 transition-all text-lg font-semibold text-slate-700"
-            />
-          </div>
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow-2xl rounded-3xl border border-gray-100">
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold text-gray-800">PC Part Picker AI</h2>
+        <div className="mt-4 flex gap-2">
+          <input 
+            type="number" 
+            value={budget} 
+            onChange={(e) => setBudget(e.target.value)}
+            className="flex-1 p-3 bg-gray-50 rounded-xl border-2 border-transparent focus:border-blue-500 outline-none font-bold"
+          />
+          <button 
+            onClick={handleGetBuild}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold transition-all"
+          >
+            {loading ? 'Building...' : 'Generate'}
+          </button>
         </div>
-        <button 
-          onClick={handleGetBuild}
-          disabled={loading}
-          className="self-end bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-indigo-200 transition-all active:scale-95 disabled:opacity-50"
-        >
-          {loading ? 'Analyzing Market...' : 'Generate Build'}
-        </button>
       </div>
 
-      {recommendation && (
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <div className="prose prose-indigo max-w-none bg-indigo-50/50 p-6 rounded-2xl border border-indigo-100 text-slate-700">
-            {/* Using a simple pre-wrap style for Markdown text */}
-            <div style={{ whiteSpace: 'pre-wrap' }}>{recommendation}</div>
+      {build && (
+        <div className="overflow-hidden rounded-2xl border border-gray-200">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
+                <th className="px-6 py-4 font-semibold">Component</th>
+                <th className="px-6 py-4 font-semibold">Recommended Part & Est. Price</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 text-gray-700">
+              {Object.entries(build).map(([key, value]) => (
+                <tr key={key} className="hover:bg-blue-50/30 transition-colors">
+                  <td className="px-6 py-4 font-bold text-blue-600">{key}</td>
+                  <td className="px-6 py-4">{value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="p-4 bg-blue-50 text-xs text-blue-800 italic">
+            *Prices reflect February 2026 market trends (RTX 5070 / Ryzen 9000).
           </div>
         </div>
       )}
