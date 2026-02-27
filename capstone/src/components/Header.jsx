@@ -24,7 +24,7 @@ const Header = () => {
       <h1 className="text-2xl font-bold text-blue-600">Welcome to PC Part Picker</h1>
       <nav className=" card nav mt-4 text-gray-600 hover:text-red-600 transition-colors duration-300">
         <ul>
-          <li><a className="text-left" href="/Home">Home</a> </li>
+          <li><a className="text-left" href="/Home">Home</a>     <a className="text-center" href="/about">About</a>     <a href="/contact">Contact</a></li>
         </ul>
       </nav>
 
