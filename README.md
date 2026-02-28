@@ -3,6 +3,7 @@ The Capstone Project for ALX
 
 This is the PC Builder Project ..
 
-Part i: The PC Builder AI
+We have two forms of Use:
 
-This is the simplest to use by someone looking for PC specs
+
+

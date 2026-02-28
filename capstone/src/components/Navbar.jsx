@@ -35,10 +35,9 @@ const Navbar = () => {
       {/* Right Section: Actions & Profile */}
       <div className="flex items-center space-x-6">
         {/* Quick Action Button */}
-        <button className="flex items-center bg-[#6366F1] hover:bg-[#4F46E5] text-white px-4 py-2 rounded-md text-sm font-semibold transition-shadow">
-          <span className="mr-2 text-lg leading-none">+</span>
+        <div className="flex items-center bg-[#6366F1] hover:bg-[#4F46E5] text-white px-4 py-2 rounded-md text-sm font-semibold transition-shadow">
           New Build
-        </button>
+        </div>
       </div>
     </nav>
   );
