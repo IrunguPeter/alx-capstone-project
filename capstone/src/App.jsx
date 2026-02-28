@@ -78,14 +78,14 @@ function App() {
         </div>
         {/*This iw where I plan to render Build.jsx */}
         <div className="px-4 justify-center mx-4 rounded-xl text-center py-29 p-4 border shadow-lg hover:bg-blue-500 flex flex-col gap-4">
-          <button>
+          <button className="mb-6">{/*Onclick this button renders the build component*/}
             <h1 className="strong">
               Start A Manual Build
 
             </h1>
           </button>
-
         </div>
+        <Build/>
       </main>
 
       {/*footer*/}
