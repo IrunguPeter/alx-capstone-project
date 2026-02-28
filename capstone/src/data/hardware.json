@@ -1,29 +1,102 @@
 {
-  "os": ["Windows 11", "MacOS", "Linux (Ubuntu)", "Linux (Arch)", "ZorinOS", "Fedora"],
+  "os": [
+    { "name": "Windows 11", "price": 110 },
+    { "name": "MacOS", "price": 0 },
+    { "name": "Linux (Ubuntu)", "price": 0 },
+    { "name": "Linux (Arch)", "price": 0 },
+    { "name": "ZorinOS", "price": 0 },
+    { "name": "Fedora", "price": 0 }
+  ],
   "ram": {
-    "capacity": [8, 16, 32, 48, 64, 128, 256],
-    "type": ["DDR4", "DDR5"]
+    "capacity": [
+      { "size": "8GB", "price": 35 },
+      { "size": "16GB", "price": 60 },
+      { "size": "32GB", "price": 110 },
+      { "size": "48GB", "price": 160 },
+      { "size": "64GB", "price": 210 },
+      { "size": "128GB", "price": 400 },
+      { "size": "256GB", "price": 850 }
+    ],
+    "type": [
+      { "name": "DDR4", "price": 0 },
+      { "name": "DDR5", "price": 20 }
+    ]
   },
   "storage": {
-    "types": ["SATA", "M.2", "NVMe PCIe"],
-    "capacities": ["256GB", "512GB", "1TB", "2TB", "4TB", "8TB"]
+    "types": [
+      { "name": "SATA", "price": 0 },
+      { "name": "M.2", "price": 10 },
+      { "name": "NVMe PCIe", "price": 25 }
+    ],
+    "capacities": [
+      { "size": "256GB", "price": 30 },
+      { "size": "512GB", "price": 50 },
+      { "size": "1TB", "price": 85 },
+      { "size": "2TB", "price": 150 },
+      { "size": "4TB", "price": 280 },
+      { "size": "8TB", "price": 550 }
+    ]
   },
   "cooling": {
-    "Liquid": ["Custom Liquid Cooled", "AIO Cooler"],
-    "Air": ["CPU Fan Cooler", "Stock/Official Cooler"]
+    "Liquid": [
+      { "name": "Custom Liquid Cooled", "price": 400 },
+      { "name": "AIO Cooler", "price": 120 }
+    ],
+    "Air": [
+      { "name": "CPU Fan Cooler", "price": 40 },
+      { "name": "Stock/Official Cooler", "price": 0 }
+    ]
   },
-  "CPU":{
-       "Apple Silicon": ["M1, M2, M3, M4, M5"],
-        "Intel":["13600k","14900k","12700kf"],
-        "AMD":["ryzen 7 5800xt","ryzen 9 5950x", "ryzen 9600xt"],
-        "SnapDragon":["Snapdragon 8 elite"]
+  "CPU": {
+    "Apple Silicon": [
+      { "name": "M1", "price": 200 },
+      { "name": "M2", "price": 300 },
+      { "name": "M3", "price": 450 },
+      { "name": "M4", "price": 600 },
+      { "name": "M5", "price": 800 }
+    ],
+    "Intel": [
+      { "name": "13600k", "price": 280 },
+      { "name": "14900k", "price": 550 },
+      { "name": "12700kf", "price": 210 }
+    ],
+    "AMD": [
+      { "name": "Ryzen 7 5800XT", "price": 230 },
+      { "name": "Ryzen 9 5950X", "price": 350 },
+      { "name": "Ryzen 9600XT", "price": 320 }
+    ],
+    "Snapdragon": [
+      { "name": "Snapdragon 8 Elite", "price": 400 }
+    ]
   },
-  "GPU":{
-    "AMD":["RX 7900 XTX","RX 6800","RX 6750xt","9060 XT","RX 9070 XT"],
-    "Intel":["B580", "B570"],
-    "NVIDIA":{
-        "GTX":["1080 ti", "1660ti", "1660 super","1060"],
-        "RTX":["2060", "2060 super","2070","2070 ti","3070","3080","3090","4060","4070","4080","4090","5060","5070","5070 ti","5080","5080 ti", "5090"]
+  "GPU": {
+    "AMD": [
+      { "name": "RX 7900 XTX", "price": 930 },
+      { "name": "RX 6800", "price": 380 },
+      { "name": "RX 6750XT", "price": 310 },
+      { "name": "9060 XT", "price": 450 },
+      { "name": "RX 9070 XT", "price": 650 }
+    ],
+    "Intel": [
+      { "name": "B580", "price": 250 },
+      { "name": "B570", "price": 190 }
+    ],
+    "NVIDIA": {
+      "GTX": [
+        { "name": "1080 Ti", "price": 150 },
+        { "name": "1660 Ti", "price": 120 },
+        { "name": "1660 Super", "price": 110 },
+        { "name": "1060", "price": 70 }
+      ],
+      "RTX": [
+        { "name": "2060", "price": 180 },
+        { "name": "3070", "price": 350 },
+        { "name": "4070", "price": 550 },
+        { "name": "4090", "price": 1600 },
+        { "name": "5070", "price": 650 },
+        { "name": "5080", "price": 1000 },
+        { "name": "5090", "price": 2000 }
+      ]
     }
   }
 }
