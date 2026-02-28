@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Questions from './components/Questions';
+import Build from './components/Build';
 
 function App() {
   const buildSectionRef = useRef(null);
@@ -50,7 +51,7 @@ function App() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Left Side: Info Text */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-4 mb-6">
             <h2 className="text-3xl font-bold text-slate-800 mb-6">Why our AI Architect?</h2>
             <ul className="space-y-4 text-slate-600">
               <li className="flex items-start gap-3">
@@ -73,6 +74,16 @@ function App() {
           <div className="lg:col-span-8">
              <Questions />
           </div>
+
+        </div>
+        {/*This iw where I plan to render Build.jsx */}
+        <div className="px-4 justify-center mx-4 rounded-xl text-center py-29 p-4 border shadow-lg hover:bg-blue-500 flex flex-col gap-4">
+          <button>
+            <h1 className="strong">
+              Start A Manual Build
+
+            </h1>
+          </button>
 
         </div>
       </main>
