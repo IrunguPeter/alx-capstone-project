@@ -11,5 +11,19 @@
   "cooling": {
     "Liquid": ["Custom Liquid Cooled", "AIO Cooler"],
     "Air": ["CPU Fan Cooler", "Stock/Official Cooler"]
+  },
+  "CPU":{
+       "Apple Silicon": ["M1, M2, M3, M4, M5"],
+        "Intel":["13600k","14900k","12700kf"],
+        "AMD":["ryzen 7 5800xt","ryzen 9 5950x", "ryzen 9600xt"],
+        "SnapDragon":["Snapdragon 8 elite"]
+  },
+  "GPU":{
+    "AMD":["RX 7900 XTX","RX 6800","RX 6750xt","9060 XT","RX 9070 XT"],
+    "Intel":["B580", "B570"],
+    "NVIDIA":{
+        "GTX":["1080 ti", "1660ti", "1660 super","1060"],
+        "RTX":["2060", "2060 super","2070","2070 ti","3070","3080","3090","4060","4070","4080","4090","5060","5070","5070 ti","5080","5080 ti", "5090"]
+    }
   }
 }
