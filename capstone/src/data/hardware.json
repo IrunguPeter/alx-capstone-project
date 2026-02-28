@@ -1,0 +1,15 @@
+{
+  "os": ["Windows 11", "MacOS", "Linux (Ubuntu)", "Linux (Arch)", "ZorinOS", "Fedora"],
+  "ram": {
+    "capacity": [8, 16, 32, 48, 64, 128, 256],
+    "type": ["DDR4", "DDR5"]
+  },
+  "storage": {
+    "types": ["SATA", "M.2", "NVMe PCIe"],
+    "capacities": ["256GB", "512GB", "1TB", "2TB", "4TB", "8TB"]
+  },
+  "cooling": {
+    "Liquid": ["Custom Liquid Cooled", "AIO Cooler"],
+    "Air": ["CPU Fan Cooler", "Stock/Official Cooler"]
+  }
+}

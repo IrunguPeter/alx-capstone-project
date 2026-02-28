@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Hardware data.json';
+import hardwareData from '../data/hardware.json';
 
 //Function to how the build questions when New build is clicked
 function Build () {
