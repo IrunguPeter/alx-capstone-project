@@ -1,0 +1,11 @@
+[{
+    "OS":["Linux","MacOS","Windows"],
+    "Portability":["Yes","No"],
+    "CPU":{
+        "Apple Silicon": ["M1, M2, M3, M4, M5"],
+        "Intel":["13600k","14900k","12700kf"],
+        "AMD":["ryzen 7 5800xt","ryzen 9 5950x", "ryzen 9600xt"],
+        "SnapDragon":["Snapdragon 8 elite"]
+    }
+}
+]

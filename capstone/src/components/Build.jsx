@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import './Hardware data.json';
 
-//Function to show the build questions when New build is clicked
+//Function to how the build questions when New build is clicked
 function Build () {
     const [isOpen, setIsOpen] = useState(false);
     const toggleMenu = () => setIsOpen(!isOpen);
@@ -32,4 +33,3 @@ function Build () {
 };
   
 export default Build;
-  

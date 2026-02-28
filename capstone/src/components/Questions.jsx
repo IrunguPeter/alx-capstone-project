@@ -8,17 +8,20 @@ const Questions = () => {
   const GEMINI_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
   const handleGetBuild = async () => {
+    if (!GEMINI_KEY) {
+      console.error("API Key is missing! Check your .env file.");
+      return;
+    }
+
     setLoading(true);
     setBuild(null);
     
     try {
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_KEY}`;
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
       
-      // We ask Gemini to return ONLY a JSON object for easy parsing
-      const prompt = `Return a JSON object for a $${budget} PC build in Feb 2026. 
+      const prompt = `Return a JSON object for a $${budget} PC build. 
       Use exactly these keys: "CPU", "GPU", "SSD", "RAM", "Motherboard", "Case", "Powersupply Unit".
-      Values should be the specific part name and its estimated 2026 price in brackets.`;
-
+      Values should be the specific part name and its price. Do not include any text outside the JSON.`;
 
       const response = await fetch(geminiUrl, {
         method: 'POST',
@@ -29,17 +32,28 @@ const Questions = () => {
       });
 
       const data = await response.json();
+
+      if (!data.candidates || !data.candidates[0]) {
+        throw new Error(data.error?.message || "No response from Gemini");
+      }
+
       const rawText = data.candidates[0].content.parts[0].text;
       
-      // Clean the string in case Gemini adds markdown code blocks
-      const cleanJson = rawText.replace(/```json|```/g, "").trim();
-      setBuild(JSON.parse(cleanJson));
+      
+      const jsonMatch = rawText.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        setBuild(JSON.parse(jsonMatch[0]));
+      } else {
+        throw new Error("Could not find valid JSON in response");
+      }
 
     } catch (error) {
       console.error("Build Error:", error);
+      console.error("Failed to generate build: " + error.message);
     } finally {
       setLoading(false);
     }
+  
   };
 
   return (
