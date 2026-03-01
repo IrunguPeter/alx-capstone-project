@@ -32,10 +32,9 @@ function Build() {
     return (
         <div className="max-w-2xl mx-auto mt-10 p-8 bg-white shadow-2xl rounded-3xl border border-gray-100 text-center">
             
-            {/* Step 0: Welcome */}
             {currentStep === 0 && (
                 <div className="py-10">
-                    <h1 className="text-3xl font-bold text-gray-800 mb-4">PC Architect 2026</h1>
+                    <h1 className="text-3xl font-bold text-gray-800 mb-4">Build your own PC</h1>
                     <p className="text-gray-500 mb-8">Let's find the perfect parts for your budget.</p>
                     <button 
                         onClick={() => setCurrentStep(1)}
@@ -46,7 +45,7 @@ function Build() {
                 </div>
             )}
 
-            {/* Step 1: OS Selection */}
+            {/* Step 1: OS */}
             {currentStep === 1 && (
                 <div>
                     <h2 className="text-xl font-bold mb-6">Which Operating System?</h2>
@@ -64,7 +63,7 @@ function Build() {
                 </div>
             )}
 
-            {/* Step 2: CPU Branching */}
+            
             {currentStep === 2 && (
                 <div>
                     <h2 className="text-xl font-bold mb-6">Choose your Processor</h2>
@@ -84,13 +83,13 @@ function Build() {
                 </div>
             )}
 
-            {/* Step 3: GPU Logic (The Massive List) */}
+            
             {currentStep === 3 && (
                 <div>
                     <h2 className="text-xl font-bold mb-2">Graphics Card (GPU)</h2>
                     <p className="text-sm text-gray-500 mb-6">Scroll to see 2026 NVIDIA RTX 50-series options</p>
                     <div className="grid grid-cols-2 gap-2 max-h-96 overflow-y-auto pr-2">
-                        {/* Combining all NVIDIA, AMD, and Intel GPUs from your JSON */}
+                        
                         {[...hardwareData.GPU.NVIDIA.RTX, ...hardwareData.GPU.AMD, ...hardwareData.GPU.Intel].map(item => (
                             <button 
                                 key={item.name} 

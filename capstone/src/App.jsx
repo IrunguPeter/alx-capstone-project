@@ -82,7 +82,6 @@ function App() {
           <button className="mb-6">{/*Onclick this button renders the build component*/}
             <h1 className="strong">
               Start A Manual Build
-
             </h1>
           </button>
         </div>
