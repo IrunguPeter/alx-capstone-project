@@ -1,16 +1,55 @@
-# React + Vite
+# PC Builder App
+PC builder App seeks to help users spec their PC with a click of a button. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Major Parts
+There are two major parts of this app
+  ### PC Builder AI
+  This is the simplest to use.
 
-Currently, two official plugins are available:
+  You insert your price at the form, and The AI specs out a full PC build for you within a few minutes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  You can then search for those components in your Local store.
 
-## React Compiler
+  ### Build your own PC (Still in development)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+  This one allows you to spec your very own PC with the parts that you want. It includes a price component to help keep track of your budget while choosing you parts. 
 
-## Expanding the ESLint configuration
+  #### Parts to choose 
+  * CPU: AMD, Intel, SnapDragon
+  * GPU: AMD, Intel,Nvidia, integrated
+  * RAM: DDR4, DDR5 (Dependent on the CPU you choose ( in Amd processors, AM4 CPUs are not compatible with DDR5 RAM, and viceversa)) Capacity (16,32,64,128 GB)
+  * Storage: SATA, NVME M.2, NVME PCIe SSDs .. Capacity (256,512,1TB, 2TB, 4TB, 8TB)
+  * Motherboard: Depends on the chipset of the CPU, size of case, type of ram, type of SSD(Sata SSD have 2 notches, while m.2 has only one).. comes in various * sizes (MicroATX, mini ITX, ATX, EATX)
+  * Cooling: Choose between Aircooled and Liquid cooled CPU(AIO or Custom Cooling)
+  * OS: MacOS, Windows, Linux( Arch, Debian, Ubuntu, Bazzite, SteamOS, ZorinOS, Fedoralinux)
+  * Case: Depends on the size of the motherboard
+  * Peripherals: Monitor, Keyboard, Mouse .
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Usage
+To use this app:
+* git clone 
+git@github.com:IrunguPeter/alx-capstone-project.git
+* cd capstone
+* npm run dev
+
+#Or 
+Access it via the Web (Link to be posted when the website is deployed)
+
+## The Project was built using:
+
+* TailwindCss
+* React/Vite
+* Post CSS
+
+
+## Developer Note
+ 
+
+I hope that this App will help you on your next PC build. Thanks for checking this repo out.
+
+Peter Irungu
+
+
+
+
+
