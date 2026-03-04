@@ -1,102 +1,91 @@
 {
   "os": [
-    { "name": "Windows 11", "price": 110 },
     { "name": "MacOS", "price": 0 },
-    { "name": "Linux (Ubuntu)", "price": 0 },
-    { "name": "Linux (Arch)", "price": 0 },
-    { "name": "ZorinOS", "price": 0 },
-    { "name": "Fedora", "price": 0 }
+    { "name": "Windows", "price": 139 },
+    { "name": "Linux (Zorin OS)", "price": 0 },
+    { "name": "Linux (Fedora Linux)", "price": 0 },
+    { "name": "Linux (Kali Linux)", "price": 0 },
+    { "name": "Linux (Bazzite)", "price": 0 },
+    { "name": "Linux (Steam OS)", "price": 0 },
+    { "name": "Linux (Chrome OS)", "price": 0 }
   ],
-  "ram": {
-    "capacity": [
-      { "size": "8GB", "price": 35 },
-      { "size": "16GB", "price": 60 },
-      { "size": "32GB", "price": 110 },
-      { "size": "48GB", "price": 160 },
-      { "size": "64GB", "price": 210 },
-      { "size": "128GB", "price": 400 },
-      { "size": "256GB", "price": 850 }
+  "mac_hardware": {
+    "MacBook": [
+      { "name": "MacBook Air", "price": 999 },
+      { "name": "MacBook Pro", "price": 1599 }
     ],
-    "type": [
-      { "name": "DDR4", "price": 0 },
-      { "name": "DDR5", "price": 20 }
-    ]
-  },
-  "storage": {
-    "types": [
-      { "name": "SATA", "price": 0 },
-      { "name": "M.2", "price": 10 },
-      { "name": "NVMe PCIe", "price": 25 }
+    "Mac mini": [
+      { "name": "Mac mini", "price": 599 }
     ],
-    "capacities": [
-      { "size": "256GB", "price": 30 },
-      { "size": "512GB", "price": 50 },
-      { "size": "1TB", "price": 85 },
-      { "size": "2TB", "price": 150 },
-      { "size": "4TB", "price": 280 },
-      { "size": "8TB", "price": 550 }
-    ]
-  },
-  "cooling": {
-    "Liquid": [
-      { "name": "Custom Liquid Cooled", "price": 400 },
-      { "name": "AIO Cooler", "price": 120 }
+    "Mac Pro": [
+      { "name": "Mac Pro", "price": 6999 }
     ],
-    "Air": [
-      { "name": "CPU Fan Cooler", "price": 40 },
-      { "name": "Stock/Official Cooler", "price": 0 }
+    "iMac": [
+      { "name": "iMac", "price": 1299 }
     ]
   },
   "CPU": {
     "Apple Silicon": [
-      { "name": "M1", "price": 200 },
-      { "name": "M2", "price": 300 },
-      { "name": "M3", "price": 450 },
+      { "name": "M1", "price": 0 },
+      { "name": "M2", "price": 200 },
+      { "name": "M3", "price": 400 },
       { "name": "M4", "price": 600 },
       { "name": "M5", "price": 800 }
     ],
     "Intel": [
-      { "name": "13600k", "price": 280 },
-      { "name": "14900k", "price": 550 },
-      { "name": "12700kf", "price": 210 }
+      { "name": "i5-13600K", "price": 280 },
+      { "name": "i7-14700K", "price": 400 },
+      { "name": "i9-14900K", "price": 550 }
     ],
     "AMD": [
-      { "name": "Ryzen 7 5800XT", "price": 230 },
-      { "name": "Ryzen 9 5950X", "price": 350 },
-      { "name": "Ryzen 9600XT", "price": 320 }
-    ],
-    "Snapdragon": [
-      { "name": "Snapdragon 8 Elite", "price": 400 }
+      { "name": "Ryzen 5 7600X", "price": 230 },
+      { "name": "Ryzen 7 7800X3D", "price": 450 },
+      { "name": "Ryzen 9 7950X", "price": 550 }
     ]
   },
   "GPU": {
+    "NVIDIA": [
+      { "name": "RTX 4060", "price": 299 },
+      { "name": "RTX 4070", "price": 599 },
+      { "name": "RTX 4080", "price": 899 },
+      { "name": "RTX 4090", "price": 1599 }
+    ],
     "AMD": [
-      { "name": "RX 7900 XTX", "price": 930 },
-      { "name": "RX 6800", "price": 380 },
-      { "name": "RX 6750XT", "price": 310 },
-      { "name": "9060 XT", "price": 450 },
-      { "name": "RX 9070 XT", "price": 650 }
+      { "name": "RX 7600", "price": 269 },
+      { "name": "RX 7800 XT", "price": 499 },
+      { "name": "RX 7900 XTX", "price": 930 }
     ],
     "Intel": [
-      { "name": "B580", "price": 250 },
-      { "name": "B570", "price": 190 }
+      { "name": "Arc A770", "price": 329 },
+      { "name": "Arc B580", "price": 250 }
+    ]
+  },
+  "ram": {
+    "mac": [
+      { "size": "8GB", "price": 0 },
+      { "size": "16GB", "price": 200 },
+      { "size": "24GB", "price": 400 },
+      { "size": "32GB", "price": 600 },
+      { "size": "64GB", "price": 1000 }
     ],
-    "NVIDIA": {
-      "GTX": [
-        { "name": "1080 Ti", "price": 150 },
-        { "name": "1660 Ti", "price": 120 },
-        { "name": "1660 Super", "price": 110 },
-        { "name": "1060", "price": 70 }
-      ],
-      "RTX": [
-        { "name": "2060", "price": 180 },
-        { "name": "3070", "price": 350 },
-        { "name": "4070", "price": 550 },
-        { "name": "4090", "price": 1600 },
-        { "name": "5070", "price": 650 },
-        { "name": "5080", "price": 1000 },
-        { "name": "5090", "price": 2000 }
-      ]
-    }
-  }
+    "pc": [
+      { "size": "16GB (2x8GB) DDR5", "price": 80 },
+      { "size": "32GB (2x16GB) DDR5", "price": 130 },
+      { "size": "64GB (2x32GB) DDR5", "price": 250 },
+      { "size": "128GB (4x32GB) DDR5", "price": 500 }
+    ]
+  },
+  "chargers": [
+    { "name": "35W Dual Port", "price": 0 },
+    { "name": "70W USB-C", "price": 20 },
+    { "name": "96W USB-C", "price": 40 }
+  ],
+  "storage": [
+    { "size": "256GB", "price": 0 },
+    { "size": "512GB", "price": 200 },
+    { "size": "1TB", "price": 400 },
+    { "size": "2TB", "price": 600 },
+    { "size": "4TB", "price": 1000 },
+    { "size": "8TB", "price": 2200 }
+  ]
 }
