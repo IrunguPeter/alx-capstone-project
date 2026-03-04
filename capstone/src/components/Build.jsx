@@ -44,12 +44,12 @@ function Build() {
             setCurrentStep(7); // Go to Storage
         } else if (category === 'storage') {
             if (isMac && selections.hardware?.name.includes('MacBook')) {
-                setCurrentStep(8); // Go to Charger for MacBooks
+                setCurrentStep(8); //Charger for MacBooks
             } else {
-                setCurrentStep(9); // Done
+                setCurrentStep(9);
             }
         } else if (category === 'charger') {
-            setCurrentStep(9); // Done
+            setCurrentStep(9);
         }
     };
 

@@ -2,22 +2,6 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 const Header = () => {
-  const Url= `https://api.api-ninjas.com/v1/dadjokes`;
-
-  const [joke] = useState("");
-
-  useEffect(() => {
-    const fetchData= async() => {
-      const response = await fetch(Url,{
-        headers: {
-          "x-API-Key": process.env.X_API_KEY
-        }
-      });
-      console.log(response);
-    };
-    fetchData();
-  },[]);
-
 
   return (
     <header className="header text-center p-6 bg-blue-100 shadow-md justify-center">
