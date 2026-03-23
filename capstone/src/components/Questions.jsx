@@ -1,12 +1,37 @@
 import { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Sparkles, 
+  Terminal, 
+  AlertCircle, 
+  Cpu, 
+  Gamepad2, 
+  HardDrive, 
+  MemoryStick, 
+  Layout, 
+  Box, 
+  Zap,
+  ArrowRight,
+  Loader2,
+  FileDown
+} from 'lucide-react';
+import { exportToPDF } from '../utils/pdfExport';
 
 const Questions = () => {
   const [budget, setBudget] = useState('1500');
   const [loading, setLoading] = useState(false);
+  const [exporting, setExporting] = useState(false);
   const [build, setBuild] = useState(null);
   const [error, setError] = useState(null);
 
   const GEMINI_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+
+  const handleExport = async () => {
+    setExporting(true);
+    await exportToPDF('ai-build-result', `AI-Architect-Build-${budget}.pdf`);
+    setExporting(false);
+  };
 
   const handleGetBuild = async () => {
     if (!GEMINI_KEY) {
@@ -19,7 +44,7 @@ const Questions = () => {
     setError(null);
     
     try {
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_KEY}`;
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`;
       
       const prompt = `You are a PC building expert in the year 2026. 
       Generate a balanced PC build for a budget of $${budget}.
@@ -60,12 +85,6 @@ const Questions = () => {
 
       let rawText = data.candidates[0].content.parts[0].text.trim();
       
-      if (rawText.startsWith('```json')) {
-        rawText = rawText.replace(/^```json/, '').replace(/```$/, '').trim();
-      } else if (rawText.startsWith('```')) {
-        rawText = rawText.replace(/^```/, '').replace(/```$/, '').trim();
-      }
-
       try {
         const parsedBuild = JSON.parse(rawText);
         setBuild(parsedBuild);
@@ -87,17 +106,30 @@ const Questions = () => {
   
   };
 
+  const iconMap = {
+    "CPU": <Cpu size={18} />,
+    "GPU": <Gamepad2 size={18} />,
+    "SSD": <HardDrive size={18} />,
+    "RAM": <MemoryStick size={18} />,
+    "Motherboard": <Layout size={18} />,
+    "Case": <Box size={18} />,
+    "Powersupply Unit": <Zap size={18} />,
+  };
+
   return (
-    <div className="max-w-2xl mx-auto p-10 glass-panel rounded-[2.5rem] fade-up border-white">
-      <div className="mb-10 text-center md:text-left">
+    <div className="max-w-2xl mx-auto p-10 glass-panel rounded-[2.5rem] border-white relative overflow-hidden">
+      <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl" />
+      
+      <div className="mb-10 text-center md:text-left relative z-10">
         <h2 className="text-3xl font-black text-slate-900 flex items-center justify-center md:justify-start gap-3">
-          <span className="text-indigo-600">AI</span> Architect
+          <span className="bg-indigo-600 text-white px-3 py-1 rounded-xl text-sm font-black tracking-widest uppercase">AI</span> 
+          Architect
         </h2>
         <p className="text-slate-500 font-medium mt-2">Neural-optimized part selection engine.</p>
         
         <div className="mt-8 flex flex-col md:flex-row gap-4">
           <div className="relative flex-1 group">
-            <span className="absolute left-5 top-1/2 -translate-y-1/2 text-indigo-600 font-black text-lg group-focus-within:text-indigo-500 transition-colors">$</span>
+            <span className="absolute left-5 top-1/2 -translate-y-1/2 text-indigo-600 font-black text-lg group-focus-within:text-indigo-400 transition-colors">$</span>
             <input 
               type="number" 
               value={budget} 
@@ -113,43 +145,96 @@ const Questions = () => {
             className={`bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-5 rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 glow-btn shadow-lg shadow-indigo-200 ${loading ? 'opacity-70 cursor-not-allowed' : 'active:scale-95'}`}
           >
             {loading ? (
-              <>
-                <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin" />
-                Processing...
-              </>
-            ) : 'Generate Build'}
+              <Loader2 className="animate-spin" size={20} />
+            ) : (
+              <Sparkles size={20} />
+            )}
+            {loading ? 'Processing...' : 'Generate Build'}
           </button>
         </div>
-        {error && <p className="mt-6 text-red-600 text-sm font-bold bg-red-50 p-4 rounded-2xl border border-red-100">{error}</p>}
+        
+        <AnimatePresence>
+          {error && (
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="mt-6 flex items-start gap-3 text-red-600 text-sm font-bold bg-red-50 p-5 rounded-2xl border border-red-100"
+            >
+              <AlertCircle size={20} className="shrink-0" />
+              <p>{error}</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {build && (
-        <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-xl shadow-indigo-100/20 fade-up">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-slate-50 text-slate-400 text-[10px] font-black uppercase tracking-widest">
-                <th className="px-8 py-5">Subsystem</th>
-                <th className="px-8 py-5">Optimized Component</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-50 text-slate-700">
-              {Object.entries(build).map(([key, value]) => (
-                <tr key={key} className="hover:bg-indigo-50/30 transition-colors group">
-                  <td className="px-8 py-5 font-black text-indigo-600 text-sm group-hover:text-indigo-700 transition-colors">{key}</td>
-                  <td className="px-8 py-5 font-bold text-sm">{value}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="px-8 py-4 bg-indigo-50/50 text-[9px] text-indigo-400 font-black uppercase tracking-widest flex justify-between items-center border-t border-slate-50">
-            <span>Market Simulation: Feb 2026</span>
-            <span className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              Neural Network Active
-            </span>
-          </div>
-        </div>
-      )}
+      <AnimatePresence mode="wait">
+        {loading ? (
+          <motion.div 
+            key="skeleton"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="space-y-3"
+          >
+            {[...Array(7)].map((_, i) => (
+              <div key={i} className="flex gap-4 p-5 rounded-2xl border border-slate-50 bg-slate-50/50 animate-pulse">
+                <div className="w-6 h-6 bg-slate-200 rounded-md" />
+                <div className="flex-1 space-y-2">
+                  <div className="h-4 bg-slate-200 rounded w-1/4" />
+                  <div className="h-3 bg-slate-100 rounded w-3/4" />
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        ) : build ? (
+          <motion.div 
+            key="build-result"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="fade-up"
+          >
+            <div id="ai-build-result" className="overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-2xl shadow-indigo-100/20 mb-6">
+              <div className="bg-slate-900 px-8 py-4 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Terminal size={14} className="text-emerald-400" />
+                  <span className="text-white/40 text-[10px] font-black uppercase tracking-[0.3em]">Compiled Specs 2026</span>
+                </div>
+                <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              </div>
+              
+              <div className="divide-y divide-slate-50">
+                {Object.entries(build).map(([key, value]) => (
+                  <div key={key} className="p-5 flex items-center gap-5 hover:bg-slate-50 transition-colors group">
+                    <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+                      {iconMap[key] || <Box size={18} />}
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{key}</p>
+                      <p className="text-slate-900 font-bold text-sm leading-tight">{value}</p>
+                    </div>
+                    <ArrowRight size={14} className="text-slate-200 group-hover:text-indigo-300 transition-colors" />
+                  </div>
+                ))}
+              </div>
+              
+              <div className="px-8 py-5 bg-indigo-50/30 flex justify-between items-center border-t border-slate-50">
+                <span className="text-[10px] text-indigo-400 font-black uppercase tracking-widest">Target Budget Match</span>
+                <span className="bg-indigo-600 text-white px-3 py-1 rounded-lg text-xs font-black tracking-tighter">${budget}</span>
+              </div>
+            </div>
+
+            <button 
+              onClick={handleExport}
+              disabled={exporting}
+              className="w-full bg-slate-900 hover:bg-black text-white py-4 rounded-2xl font-black text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50 shadow-xl shadow-slate-200"
+            >
+              {exporting ? <Loader2 className="animate-spin" size={18} /> : <FileDown size={18} />}
+              {exporting ? 'Generating PDF...' : 'Download Build Specs (PDF)'}
+            </button>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 };

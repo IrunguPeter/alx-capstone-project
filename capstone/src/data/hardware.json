@@ -1,91 +1,106 @@
 {
   "os": [
     { "name": "MacOS", "price": 0 },
-    { "name": "Windows", "price": 139 },
+    { "name": "Windows 11 Pro", "price": 139 },
     { "name": "Linux (Zorin OS)", "price": 0 },
     { "name": "Linux (Fedora Linux)", "price": 0 },
-    { "name": "Linux (Kali Linux)", "price": 0 },
     { "name": "Linux (Bazzite)", "price": 0 },
-    { "name": "Linux (Steam OS)", "price": 0 },
-    { "name": "Linux (Chrome OS)", "price": 0 }
+    { "name": "Linux (Steam OS)", "price": 0 }
   ],
   "mac_hardware": {
     "MacBook": [
-      { "name": "MacBook Air", "price": 999 },
-      { "name": "MacBook Pro", "price": 1599 }
+      { "name": "MacBook Air (M3)", "price": 999 },
+      { "name": "MacBook Pro (M4 Pro)", "price": 1999 }
     ],
     "Mac mini": [
-      { "name": "Mac mini", "price": 599 }
+      { "name": "Mac mini (M4)", "price": 599 },
+      { "name": "Mac mini (M4 Pro)", "price": 1399 }
     ],
-    "Mac Pro": [
-      { "name": "Mac Pro", "price": 6999 }
-    ],
-    "iMac": [
-      { "name": "iMac", "price": 1299 }
+    "Studio": [
+      { "name": "Mac Studio (M2 Max)", "price": 1999 },
+      { "name": "Mac Studio (M2 Ultra)", "price": 3999 }
     ]
   },
   "CPU": {
     "Apple Silicon": [
-      { "name": "M1", "price": 0 },
-      { "name": "M2", "price": 200 },
-      { "name": "M3", "price": 400 },
-      { "name": "M4", "price": 600 },
-      { "name": "M5", "price": 800 }
+      { "name": "M3 Standard", "price": 0 },
+      { "name": "M4 Pro", "price": 400 },
+      { "name": "M4 Max", "price": 800 }
     ],
     "Intel": [
-      { "name": "i5-13600K", "price": 280 },
-      { "name": "i7-14700K", "price": 400 },
-      { "name": "i9-14900K", "price": 550 }
+      { "name": "Core i5-14600K", "price": 320, "socket": "LGA1700", "ramType": "DDR5" },
+      { "name": "Core i7-14700K", "price": 410, "socket": "LGA1700", "ramType": "DDR5" },
+      { "name": "Core i9-14900K", "price": 590, "socket": "LGA1700", "ramType": "DDR5" }
     ],
     "AMD": [
-      { "name": "Ryzen 5 7600X", "price": 230 },
-      { "name": "Ryzen 7 7800X3D", "price": 450 },
-      { "name": "Ryzen 9 7950X", "price": 550 }
+      { "name": "Ryzen 5 7600X", "price": 230, "socket": "AM5", "ramType": "DDR5" },
+      { "name": "Ryzen 7 7800X3D", "price": 450, "socket": "AM5", "ramType": "DDR5" },
+      { "name": "Ryzen 9 7950X", "price": 540, "socket": "AM5", "ramType": "DDR5" },
+      { "name": "Ryzen 7 5800X", "price": 210, "socket": "AM4", "ramType": "DDR4" }
     ]
   },
+  "Motherboard": [
+    { "name": "ASUS ROG Strix Z790-E", "price": 380, "socket": "LGA1700", "ramType": "DDR5", "size": "ATX" },
+    { "name": "MSI MAG B760 TOMAHAWK", "price": 190, "socket": "LGA1700", "ramType": "DDR5", "size": "ATX" },
+    { "name": "Gigabyte X670E AORUS MASTER", "price": 450, "socket": "AM5", "ramType": "DDR5", "size": "ATX" },
+    { "name": "ASRock B650M Pro RS", "price": 140, "socket": "AM5", "ramType": "DDR5", "size": "Micro-ATX" },
+    { "name": "ASUS TUF GAMING B550-PLUS", "price": 150, "socket": "AM4", "ramType": "DDR4", "size": "ATX" }
+  ],
   "GPU": {
     "NVIDIA": [
-      { "name": "RTX 4060", "price": 299 },
-      { "name": "RTX 4070", "price": 599 },
-      { "name": "RTX 4080", "price": 899 },
-      { "name": "RTX 4090", "price": 1599 }
+      { "name": "RTX 4060 Ti", "price": 380 },
+      { "name": "RTX 4070 Super", "price": 599 },
+      { "name": "RTX 4080 Super", "price": 999 },
+      { "name": "RTX 4090", "price": 1699 }
     ],
     "AMD": [
-      { "name": "RX 7600", "price": 269 },
+      { "name": "RX 7600 XT", "price": 320 },
       { "name": "RX 7800 XT", "price": 499 },
       { "name": "RX 7900 XTX", "price": 930 }
     ],
     "Intel": [
-      { "name": "Arc A770", "price": 329 },
-      { "name": "Arc B580", "price": 250 }
+      { "name": "Arc A770", "price": 300 }
     ]
   },
   "ram": {
     "mac": [
-      { "size": "8GB", "price": 0 },
-      { "size": "16GB", "price": 200 },
-      { "size": "24GB", "price": 400 },
-      { "size": "32GB", "price": 600 },
-      { "size": "64GB", "price": 1000 }
+      { "size": "16GB Unified", "price": 0 },
+      { "size": "32GB Unified", "price": 400 },
+      { "size": "64GB Unified", "price": 800 }
     ],
     "pc": [
-      { "size": "16GB (2x8GB) DDR5", "price": 80 },
-      { "size": "32GB (2x16GB) DDR5", "price": 130 },
-      { "size": "64GB (2x32GB) DDR5", "price": 250 },
-      { "size": "128GB (4x32GB) DDR5", "price": 500 }
+      { "size": "16GB (2x8GB) DDR4-3200", "price": 50, "ramType": "DDR4" },
+      { "size": "32GB (2x16GB) DDR4-3600", "price": 85, "ramType": "DDR4" },
+      { "size": "32GB (2x16GB) DDR5-6000", "price": 115, "ramType": "DDR5" },
+      { "size": "64GB (2x32GB) DDR5-6400", "price": 210, "ramType": "DDR5" }
     ]
   },
-  "chargers": [
-    { "name": "35W Dual Port", "price": 0 },
-    { "name": "70W USB-C", "price": 20 },
-    { "name": "96W USB-C", "price": 40 }
+  "Cooling": [
+    { "name": "Noctua NH-D15 Air Cooler", "price": 110, "type": "Air" },
+    { "name": "Be Quiet! Pure Rock 2", "price": 45, "type": "Air" },
+    { "name": "NZXT Kraken Elite 360 AIO", "price": 280, "type": "Liquid" },
+    { "name": "Corsair iCUE H150i RGB", "price": 180, "type": "Liquid" }
   ],
-  "storage": [
-    { "size": "256GB", "price": 0 },
-    { "size": "512GB", "price": 200 },
-    { "size": "1TB", "price": 400 },
-    { "size": "2TB", "price": 600 },
-    { "size": "4TB", "price": 1000 },
-    { "size": "8TB", "price": 2200 }
+  "Storage": [
+    { "size": "1TB NVMe Gen4 SSD", "price": 90 },
+    { "size": "2TB NVMe Gen4 SSD", "price": 160 },
+    { "size": "4TB NVMe Gen5 SSD", "price": 450 },
+    { "size": "2TB SATA SSD", "price": 120 }
+  ],
+  "Case": [
+    { "name": "Lian Li PC-O11 Dynamic", "price": 150, "size": "ATX" },
+    { "name": "NZXT H6 Flow", "price": 110, "size": "ATX" },
+    { "name": "Fractal Design North", "price": 140, "size": "ATX" },
+    { "name": "Cooler Master Q300L", "price": 60, "size": "Micro-ATX" }
+  ],
+  "PSU": [
+    { "name": "Corsair RM850e 850W Gold", "price": 120, "wattage": 850 },
+    { "name": "EVGA SuperNOVA 1000G", "price": 180, "wattage": 1000 },
+    { "name": "Seasonic FOCUS 750W", "price": 100, "wattage": 750 }
+  ],
+  "chargers": [
+    { "name": "70W USB-C", "price": 20 },
+    { "name": "96W USB-C", "price": 40 },
+    { "name": "140W USB-C", "price": 99 }
   ]
 }
