@@ -44,7 +44,7 @@ const Questions = () => {
     setError(null);
     
     try {
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`;
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_KEY}`;
       
       const prompt = `You are a PC building expert in the year 2026. 
       Generate a balanced PC build for a budget of $${budget}.
