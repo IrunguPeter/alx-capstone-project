@@ -15,7 +15,8 @@ import {
   Box,
   Wind,
   FileDown,
-  Loader2
+  Loader2,
+  AlertCircle
 } from 'lucide-react';
 import hardwareData from '../data/hardware.json';
 import { exportToPDF } from '../utils/pdfExport';
@@ -36,6 +37,7 @@ const initialState = {
         charger: null,
     },
     totalPrice: 0,
+    totalWattage: 0,
 };
 
 const STEPS = [
@@ -59,6 +61,8 @@ function reducer(state, action) {
             const newSelections = { ...state.selections, [category]: item };
             const newPrice = Object.values(newSelections)
                 .reduce((acc, curr) => acc + (curr?.price || 0), 0);
+            const newWattage = Object.values(newSelections)
+                .reduce((acc, curr) => acc + (curr?.tdp || 0), 0);
             
             let nextStep = state.currentStep;
             const isMac = newSelections.os?.name === 'MacOS';
@@ -98,6 +102,7 @@ function reducer(state, action) {
                 ...state,
                 selections: newSelections,
                 totalPrice: newPrice,
+                totalWattage: newWattage,
                 currentStep: nextStep,
             };
         }
@@ -148,8 +153,15 @@ function Build() {
     const stepRef = useRef(null);
     const [exporting, setExporting] = useState(false);
 
-    const { currentStep, selections, totalPrice } = state;
+    const { currentStep, selections, totalPrice, totalWattage } = state;
     const isMac = selections.os?.name === 'MacOS';
+    const isPowerInsufficient = selections.psu && totalWattage > selections.psu.wattage;
+    const powerSafetyMargin = selections.psu ? selections.psu.wattage - totalWattage : null;
+
+    // Clearance Checks
+    const isGpuTooLong = selections.case && selections.gpu && selections.gpu.length > selections.case.gpuClearance;
+    const isCoolerTooTall = selections.case && selections.cooling && selections.cooling.height > selections.case.cpuClearance;
+    const isCompatible = !isPowerInsufficient && !isGpuTooLong && !isCoolerTooTall;
 
     useEffect(() => {
         if (currentStep > 0) {
@@ -602,7 +614,62 @@ function Build() {
                                     {selections.case && <SummaryRow label="Chassis" value={selections.case.name} />}
                                     {selections.psu && <SummaryRow label="Power Supply" value={selections.psu.name} />}
                                     {selections.charger && <SummaryRow label="Adapter" value={selections.charger.name} />}
+                                    
+                                    {!isMac && (
+                                        <div className="pt-4 mt-4 border-t border-white/10 space-y-2">
+                                            <div className="flex justify-between items-center">
+                                                <span className="text-white/40 font-black uppercase tracking-[0.2em] text-[10px]">Power Draw</span>
+                                                <span className="text-white font-bold text-sm">{totalWattage}W</span>
+                                            </div>
+                                            {selections.psu && (
+                                                <div className="flex justify-between items-center">
+                                                    <span className="text-white/40 font-black uppercase tracking-[0.2em] text-[10px]">Safety Margin</span>
+                                                    <span className={`font-bold text-sm ${isPowerInsufficient ? 'text-red-400' : 'text-emerald-400'}`}>
+                                                        {powerSafetyMargin}W
+                                                    </span>
+                                                </div>
+                                            )}
+                                            {(isGpuTooLong || isCoolerTooTall) && (
+                                                <div className="pt-2 space-y-2">
+                                                    {isGpuTooLong && (
+                                                        <div className="flex justify-between items-center text-red-400">
+                                                            <span className="font-black uppercase tracking-[0.2em] text-[10px]">GPU Clearance</span>
+                                                            <span className="font-bold text-xs">Exceeded</span>
+                                                        </div>
+                                                    )}
+                                                    {isCoolerTooTall && (
+                                                        <div className="flex justify-between items-center text-red-400">
+                                                            <span className="font-black uppercase tracking-[0.2em] text-[10px]">Cooler Height</span>
+                                                            <span className="font-bold text-xs">Exceeded</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
+                                {(isPowerInsufficient || isGpuTooLong || isCoolerTooTall) && (
+                                    <div className="mt-6 p-4 bg-red-500/20 border border-red-500/50 rounded-2xl flex flex-col gap-2 animate-pulse">
+                                        {isPowerInsufficient && (
+                                            <div className="flex items-center gap-3">
+                                                <AlertCircle className="text-red-400" size={16} />
+                                                <p className="text-red-200 text-[10px] font-black uppercase tracking-wider text-left">Power draw exceeds PSU capacity!</p>
+                                            </div>
+                                        )}
+                                        {isGpuTooLong && (
+                                            <div className="flex items-center gap-3">
+                                                <AlertCircle className="text-red-400" size={16} />
+                                                <p className="text-red-200 text-[10px] font-black uppercase tracking-wider text-left">GPU is too long for this case!</p>
+                                            </div>
+                                        )}
+                                        {isCoolerTooTall && (
+                                            <div className="flex items-center gap-3">
+                                                <AlertCircle className="text-red-400" size={16} />
+                                                <p className="text-red-200 text-[10px] font-black uppercase tracking-wider text-left">CPU Cooler is too tall for this case!</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
                                 <div className="mt-10 pt-8 border-t border-white/10 relative z-10">
                                     <div className="flex justify-between items-end">
                                         <div>
@@ -610,8 +677,12 @@ function Build() {
                                             <p className="text-5xl font-black text-white tracking-tighter">${totalPrice}</p>
                                         </div>
                                         <div className="text-right">
-                                            <p className="text-emerald-400 font-bold text-xs uppercase tracking-widest">Build Verified</p>
-                                            <p className="text-white/40 text-[9px] uppercase tracking-widest mt-1 italic">Neural-checked for 2026</p>
+                                            <p className={`font-bold text-xs uppercase tracking-widest ${isCompatible ? 'text-emerald-400' : 'text-red-400'}`}>
+                                                {isCompatible ? 'Build Verified' : 'Incompatible Build'}
+                                            </p>
+                                            <p className="text-white/40 text-[9px] uppercase tracking-widest mt-1 italic">
+                                                {isCompatible ? 'Neural-checked for 2026' : 'Safety Violation Detected'}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

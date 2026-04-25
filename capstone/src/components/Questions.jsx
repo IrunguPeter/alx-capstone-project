@@ -24,6 +24,14 @@ const Questions = () => {
   const [exporting, setExporting] = useState(false);
   const [build, setBuild] = useState(null);
   const [error, setError] = useState(null);
+  const [goal, setGoal] = useState('a balanced build');
+
+  const PRESETS = [
+    { label: 'Budget', value: '800', goal: 'the best value-for-money entry-level gaming build' },
+    { label: 'Gaming', value: '1800', goal: 'a high-performance 4K gaming build' },
+    { label: 'Workstation', value: '3500', goal: 'a professional workstation for 3D rendering and video editing' },
+    { label: 'Extreme', value: '5000', goal: 'an absolute flagship build with no compromises' },
+  ];
 
   const GEMINI_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
@@ -47,7 +55,7 @@ const Questions = () => {
       const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_KEY}`;
       
       const prompt = `You are a PC building expert in the year 2026. 
-      Generate a balanced PC build for a budget of $${budget}.
+      Generate ${goal} for a budget of $${budget}.
       
       Return ONLY a JSON object with these EXACT keys:
       "CPU", "GPU", "SSD", "RAM", "Motherboard", "Case", "Powersupply Unit".
@@ -127,7 +135,26 @@ const Questions = () => {
         </h2>
         <p className="text-slate-500 font-medium mt-2">Neural-optimized part selection engine.</p>
         
-        <div className="mt-8 flex flex-col md:flex-row gap-4">
+        <div className="mt-8 flex flex-wrap gap-2 mb-4">
+          {PRESETS.map((p) => (
+            <button
+              key={p.label}
+              onClick={() => {
+                setBudget(p.value);
+                setGoal(p.goal);
+              }}
+              className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${
+                budget === p.value 
+                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200 scale-105' 
+                  : 'bg-white text-slate-400 border border-slate-100 hover:border-indigo-200 hover:text-indigo-600'
+              }`}
+            >
+              {p.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-4">
           <div className="relative flex-1 group">
             <span className="absolute left-5 top-1/2 -translate-y-1/2 text-indigo-600 font-black text-lg group-focus-within:text-indigo-400 transition-colors">$</span>
             <input 
