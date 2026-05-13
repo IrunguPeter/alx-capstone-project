@@ -37,7 +37,6 @@ export const exportToPDF = async (elementId, filename = 'PC-Build-Specs.pdf') =>
     pdf.addImage(imgData, 'PNG', 10, 50, pdfWidth - 20, pdfHeight - 20);
 
     // Add a footer
-    const finalY = 50 + pdfHeight;
     pdf.setTextColor(150, 150, 150);
     pdf.setFontSize(8);
     pdf.text(`Generated on ${new Date().toLocaleDateString()} • Ref: PC-2026-X89`, 20, pdf.internal.pageSize.getHeight() - 10);

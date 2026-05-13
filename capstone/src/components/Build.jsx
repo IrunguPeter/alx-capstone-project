@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import hardwareData from '../data/hardware.json';
 import { exportToPDF } from '../utils/pdfExport';
+import Checkout from './checkout';
 
 const initialState = {
     currentStep: 0,
@@ -702,6 +703,11 @@ function Build() {
                                     {exporting ? <Loader2 className="animate-spin" size={20} /> : <FileDown size={20} />}
                                     {exporting ? 'Generating...' : 'Print Specs'}
                                 </button>
+                                <Checkout 
+                                    amount={totalPrice} 
+                                    label="Donate Build Cost"
+                                    className="bg-emerald-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-100 flex items-center gap-3 active:scale-95"
+                                />
                             </div>
                         </motion.div>
                     )}

@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import Navbar from './components/Navbar';
 import Questions from './components/Questions';
 import Build from './components/Build';
+import Checkout from './components/checkout';
 import heroImage from './assets/hero-pc.jpg';
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
                 >
                   Start AI Build
                 </button>
+                <Checkout label="Donate" amount={50} allowCustomAmount={true} />
                 <button 
                   onClick={scrollToManualBuild}
                   className="bg-white/50 hover:bg-white text-slate-900 border border-white/80 backdrop-blur-md font-bold py-4 px-10 rounded-2xl transition-all active:scale-95"

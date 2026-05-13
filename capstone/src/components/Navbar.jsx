@@ -21,6 +21,7 @@ const Navbar = ({ onNewBuild }) => {
           <span className="text-white font-black text-xl tracking-tight">PART<span className="text-indigo-500">PICKER</span></span>
         </div>
 
+
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-1">
           {navLinks.map((link) => (

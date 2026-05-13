@@ -17,6 +17,7 @@ import {
   FileDown
 } from 'lucide-react';
 import { exportToPDF } from '../utils/pdfExport';
+import Checkout from './checkout';
 
 const Questions = () => {
   const [budget, setBudget] = useState('1500');
@@ -251,14 +252,21 @@ const Questions = () => {
               </div>
             </div>
 
-            <button 
-              onClick={handleExport}
-              disabled={exporting}
-              className="w-full bg-slate-900 hover:bg-black text-white py-4 rounded-2xl font-black text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50 shadow-xl shadow-slate-200"
-            >
-              {exporting ? <Loader2 className="animate-spin" size={18} /> : <FileDown size={18} />}
-              {exporting ? 'Generating PDF...' : 'Download Build Specs (PDF)'}
-            </button>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button 
+                onClick={handleExport}
+                disabled={exporting}
+                className="flex-1 bg-slate-900 hover:bg-black text-white py-4 rounded-2xl font-black text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50 shadow-xl shadow-slate-200"
+              >
+                {exporting ? <Loader2 className="animate-spin" size={18} /> : <FileDown size={18} />}
+                {exporting ? 'Generating PDF...' : 'Download Build Specs (PDF)'}
+              </button>
+              <Checkout 
+                amount={budget} 
+                label="Support Project"
+                className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-4 rounded-2xl font-black text-sm transition-all flex items-center justify-center gap-2 shadow-xl shadow-indigo-200 active:scale-95"
+              />
+            </div>
           </motion.div>
         ) : null}
       </AnimatePresence>
