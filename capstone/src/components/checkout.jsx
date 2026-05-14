@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const Checkout = ({ 
-  amount: initialAmount = 10, 
+  amount: initialAmount = "", 
   currency = "KES", 
   className = "", 
   label = "Donate", 
@@ -100,7 +100,7 @@ const Checkout = ({
             value={amount} 
             onChange={(e) => setAmount(e.target.value)}
             className="w-full pl-10 pr-3 py-4 bg-white/50 border-2 border-rose-100 rounded-2xl focus:border-rose-600 outline-none font-bold text-slate-900 transition-all text-sm"
-            placeholder="50"
+            placeholder="500 KES"
           />
         </div>
         <button 

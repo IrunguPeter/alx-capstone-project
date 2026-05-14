@@ -57,7 +57,7 @@ function App() {
                   <span>Manual Configurator</span>
                 </button>
                 <div className="w-full lg:w-auto pt-2 lg:pt-0">
-                  <Checkout label="Donate" amount={50} allowCustomAmount={true} />
+                  <Checkout label="Donate" allowCustomAmount={true} />
                 </div>
               </div>
             </div>
