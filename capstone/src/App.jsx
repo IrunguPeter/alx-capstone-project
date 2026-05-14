@@ -22,7 +22,7 @@ function App() {
       <Navbar onNewBuild={scrollToBuild} />
       
       {/* 1. Hero Section */}
-      <div className="relative h-[650px] w-full overflow-hidden border-b border-slate-100">
+      <div className="relative min-h-[700px] md:h-[750px] w-full overflow-hidden border-b border-slate-100 flex items-center">
         <img 
           src={heroImage} 
           alt="High-end Gaming PC 2026" 
@@ -30,30 +30,35 @@ function App() {
         />
         
         {/* Transparent overlay with centered glass card */}
-        <div className="absolute inset-0 bg-black/5 flex items-center">
-          <div className="max-w-7xl mx-auto px-8 w-full">
-            <div className="max-w-2xl fade-up p-10 md:p-14 glass-panel rounded-[3rem] border-white/40 shadow-[0_32px_64px_-16px_rgba(99,102,241,0.15)]">
-              <h1 className="text-5xl md:text-6xl font-black text-slate-900 leading-tight">
-                Building a PC in <span className="text-indigo-600">2026</span> made simple.
+        <div className="absolute inset-0 bg-black/10 flex items-center">
+          <div className="max-w-7xl mx-auto px-6 md:px-8 w-full">
+            <div className="max-w-3xl fade-up p-8 md:p-14 glass-panel rounded-[2.5rem] md:rounded-[3rem] border-white/40 shadow-[0_32px_64px_-16px_rgba(99,102,241,0.15)] mt-16 md:mt-0">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-tight">
+                Building a PC in <span className="text-indigo-600">2026</span> <br className="hidden md:block" /> made simple.
               </h1>
-              <p className="mt-6 text-xl text-slate-600 font-medium leading-relaxed">
+              <p className="mt-6 text-lg md:text-xl text-slate-600 font-medium leading-relaxed max-w-xl">
                 Leverage advanced AI to find the perfect balance of 
                 performance and price for your next-gen build.
               </p>
-              <div className="flex gap-4 mt-10">
+              
+              <div className="flex flex-wrap gap-4 mt-10">
                 <button 
                   onClick={scrollToBuild}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-2xl shadow-lg shadow-indigo-200 transition-all active:scale-95 glow-btn"
+                  className="flex-1 sm:flex-none bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 md:px-10 rounded-2xl shadow-xl shadow-indigo-200 transition-all active:scale-95 glow-btn whitespace-nowrap flex items-center justify-center gap-2"
                 >
-                  Start AI Build
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                  <span>Start AI Build</span>
                 </button>
-                <Checkout label="Donate" amount={50} allowCustomAmount={true} />
                 <button 
                   onClick={scrollToManualBuild}
-                  className="bg-white/50 hover:bg-white text-slate-900 border border-white/80 backdrop-blur-md font-bold py-4 px-10 rounded-2xl transition-all active:scale-95"
+                  className="flex-1 sm:flex-none bg-white/80 hover:bg-white text-slate-900 border border-slate-200 backdrop-blur-md font-bold py-4 px-8 md:px-10 rounded-2xl transition-all active:scale-95 whitespace-nowrap flex items-center justify-center gap-2"
                 >
-                  Manual Configurator
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                  <span>Manual Configurator</span>
                 </button>
+                <div className="w-full lg:w-auto pt-2 lg:pt-0">
+                  <Checkout label="Donate" amount={50} allowCustomAmount={true} />
+                </div>
               </div>
             </div>
           </div>

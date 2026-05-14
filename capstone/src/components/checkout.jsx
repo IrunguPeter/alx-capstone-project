@@ -88,24 +88,24 @@ const Checkout = ({
     }
   };
 
-  const defaultClasses = "bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-10 rounded-2xl shadow-lg shadow-rose-200 transition-all active:scale-95 glow-btn whitespace-nowrap";
+  const defaultClasses = "bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-8 rounded-2xl shadow-lg shadow-rose-100 transition-all active:scale-95 glow-btn whitespace-nowrap";
 
   if (allowCustomAmount) {
     return (
-      <div className="flex flex-col sm:flex-row gap-3 items-center">
-        <div className="relative group w-full sm:w-40">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-rose-600 font-black text-sm">{currency}</span>
+      <div className={`flex items-center gap-2 ${className}`}>
+        <div className="relative group w-32">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-rose-600 font-black text-xs">{currency}</span>
           <input 
             type="number" 
             value={amount} 
             onChange={(e) => setAmount(e.target.value)}
-            className="w-full pl-14 pr-4 py-4 bg-white/80 border-2 border-rose-100 rounded-2xl focus:border-rose-600 outline-none font-bold text-slate-900 transition-all"
-            placeholder="Amount"
+            className="w-full pl-10 pr-3 py-4 bg-white/50 border-2 border-rose-100 rounded-2xl focus:border-rose-600 outline-none font-bold text-slate-900 transition-all text-sm"
+            placeholder="50"
           />
         </div>
         <button 
           onClick={handlePayment}
-          className={className || defaultClasses}
+          className={defaultClasses}
         >
           {label}
         </button>
