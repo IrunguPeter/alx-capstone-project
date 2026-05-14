@@ -16,7 +16,11 @@ import {
   Wind,
   FileDown,
   Loader2,
-  AlertCircle
+  AlertCircle,
+  MousePointer2,
+  Keyboard,
+  Headphones,
+  Tv
 } from 'lucide-react';
 import hardwareData from '../data/hardware.json';
 import { exportToPDF } from '../utils/pdfExport';
@@ -36,6 +40,10 @@ const initialState = {
         case: null,
         psu: null,
         charger: null,
+        monitor: null,
+        keyboard: null,
+        mouse: null,
+        headset: null,
     },
     totalPrice: 0,
     totalWattage: 0,
@@ -53,6 +61,10 @@ const STEPS = [
   { id: 12, name: 'Case', icon: Box },
   { id: 13, name: 'Power', icon: Zap },
   { id: 8, name: 'Adapter', icon: Zap },
+  { id: 14, name: 'Display', icon: Tv },
+  { id: 15, name: 'Keys', icon: Keyboard },
+  { id: 16, name: 'Mouse', icon: MousePointer2 },
+  { id: 17, name: 'Audio', icon: Headphones },
 ];
 
 function reducer(state, action) {
@@ -66,10 +78,10 @@ function reducer(state, action) {
                 .reduce((acc, curr) => acc + (curr?.tdp || 0), 0);
             
             let nextStep = state.currentStep;
-            const isMac = newSelections.os?.name === 'MacOS';
+            const isMac = newSelections.os?.name.includes('Mac');
 
             if (category === 'os') {
-                nextStep = item.name === 'MacOS' ? 2 : 3;
+                nextStep = item.name.includes('Mac') ? 2 : 4;
             } else if (category === 'hardware') {
                 nextStep = 4;
             } else if (category === 'cpu') {
@@ -83,7 +95,7 @@ function reducer(state, action) {
             } else if (category === 'storage') {
                 const isMacBook = newSelections.hardware?.name.includes('MacBook');
                 if (isMac) {
-                   nextStep = isMacBook ? 8 : 100;
+                   nextStep = isMacBook ? 8 : 14;
                 } else {
                    nextStep = 11;
                 }
@@ -92,12 +104,18 @@ function reducer(state, action) {
             } else if (category === 'case') {
                 nextStep = 13;
             } else if (category === 'psu') {
-                nextStep = 100;
+                nextStep = 14;
             } else if (category === 'charger') {
-                nextStep = 100;
+                nextStep = 14;
+            } else if (category === 'monitor') {
+                nextStep = 15;
+            } else if (category === 'keyboard') {
+                nextStep = 16;
+            } else if (category === 'mouse') {
+                nextStep = 17;
+            } else if (category === 'headset') {
+                nextStep = 9;
             }
-
-            if (nextStep === 100) nextStep = 9;
 
             return {
                 ...state,
@@ -109,10 +127,10 @@ function reducer(state, action) {
         }
         case 'PREVIOUS_STEP': {
             let prevStep = state.currentStep - 1;
-            const isMac = state.selections.os?.name === 'MacOS';
+            const isMac = state.selections.os?.name.includes('Mac');
 
-            if (state.currentStep === 2 || state.currentStep === 3) prevStep = 1;
-            else if (state.currentStep === 4) prevStep = 2;
+            if (state.currentStep === 2) prevStep = 1;
+            else if (state.currentStep === 4) prevStep = isMac ? 2 : 1;
             else if (state.currentStep === 10) prevStep = 4;
             else if (state.currentStep === 5) prevStep = 10;
             else if (state.currentStep === 6) prevStep = isMac ? 4 : 5;
@@ -121,13 +139,17 @@ function reducer(state, action) {
             else if (state.currentStep === 12) prevStep = 11;
             else if (state.currentStep === 13) prevStep = 12;
             else if (state.currentStep === 8) prevStep = 7;
-            else if (state.currentStep === 9) {
+            else if (state.currentStep === 14) {
                 if (isMac) {
                     prevStep = state.selections.charger ? 8 : 7;
                 } else {
                     prevStep = 13;
                 }
             }
+            else if (state.currentStep === 15) prevStep = 14;
+            else if (state.currentStep === 16) prevStep = 15;
+            else if (state.currentStep === 17) prevStep = 16;
+            else if (state.currentStep === 9) prevStep = 17;
 
             return { ...state, currentStep: prevStep };
         }
@@ -155,7 +177,7 @@ function Build() {
     const [exporting, setExporting] = useState(false);
 
     const { currentStep, selections, totalPrice, totalWattage } = state;
-    const isMac = selections.os?.name === 'MacOS';
+    const isMac = selections.os?.name?.includes('Mac');
     const isPowerInsufficient = selections.psu && totalWattage > selections.psu.wattage;
     const powerSafetyMargin = selections.psu ? selections.psu.wattage - totalWattage : null;
 
@@ -193,14 +215,14 @@ function Build() {
             role="region" 
             aria-label="PC Build Wizard"
         >
-            {currentStep > 0 && currentStep < 9 && (
+            {currentStep > 0 && currentStep !== 9 && (
                 <div className="mb-12 hidden md:flex justify-between items-center px-4 relative overflow-x-auto pb-8 custom-scrollbar">
                     <div className="absolute top-5 left-0 w-full h-0.5 bg-slate-100 -translate-y-1/2 z-0" />
                     {STEPS.filter(s => {
                         if (isMac) {
-                           return [1, 2, 4, 6, 7, 8].includes(s.id);
+                           return [1, 2, 4, 6, 7, 8, 14, 15, 16, 17].includes(s.id);
                         } else {
-                           return [1, 4, 10, 5, 6, 7, 11, 12, 13].includes(s.id);
+                           return [1, 4, 10, 5, 6, 7, 11, 12, 13, 14, 15, 16, 17].includes(s.id);
                         }
                     }).map((step) => {
                         const Icon = step.icon;
@@ -584,6 +606,134 @@ function Build() {
                         </motion.div>
                     )}
 
+                    {currentStep === 14 && (
+                        <motion.div 
+                            key="step-14"
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                        >
+                            <h2 className="text-2xl font-black text-slate-900 mb-8">Select Visual Display</h2>
+                            <div className="grid grid-cols-1 gap-4 max-h-96 overflow-y-auto p-4 bg-slate-50/50 rounded-3xl border border-slate-100">
+                                {hardwareData.Monitors.map(item => (
+                                    <button 
+                                        key={item.name} 
+                                        onClick={() => handleSelect('monitor', item)} 
+                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 transition-all group"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
+                                                <Tv size={20} />
+                                            </div>
+                                            <div className="text-left">
+                                                <span className="font-black text-slate-800 block">{item.name}</span>
+                                                <span className="text-[10px] text-slate-400 font-bold uppercase">{item.resolution} • {item.refreshRate}</span>
+                                            </div>
+                                        </div>
+                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
+
+                    {currentStep === 15 && (
+                        <motion.div 
+                            key="step-15"
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                        >
+                            <h2 className="text-2xl font-black text-slate-900 mb-8">Choose Input Device</h2>
+                            <div className="grid grid-cols-1 gap-4 max-h-96 overflow-y-auto p-4 bg-slate-50/50 rounded-3xl border border-slate-100">
+                                {hardwareData.Keyboards.map(item => (
+                                    <button 
+                                        key={item.name} 
+                                        onClick={() => handleSelect('keyboard', item)} 
+                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 transition-all group"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
+                                                <Keyboard size={20} />
+                                            </div>
+                                            <div className="text-left">
+                                                <span className="font-black text-slate-800 block">{item.name}</span>
+                                                <span className="text-[10px] text-slate-400 font-bold uppercase">{item.formFactor} • {item.switchType}</span>
+                                            </div>
+                                        </div>
+                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
+
+                    {currentStep === 16 && (
+                        <motion.div 
+                            key="step-16"
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                        >
+                            <h2 className="text-2xl font-black text-slate-900 mb-8">Precision Tracking</h2>
+                            <div className="grid grid-cols-1 gap-4 max-h-96 overflow-y-auto p-4 bg-slate-50/50 rounded-3xl border border-slate-100">
+                                {hardwareData.Mice.map(item => (
+                                    <button 
+                                        key={item.name} 
+                                        onClick={() => handleSelect('mouse', item)} 
+                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 transition-all group"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
+                                                <MousePointer2 size={20} />
+                                            </div>
+                                            <div className="text-left">
+                                                <span className="font-black text-slate-800 block">{item.name}</span>
+                                                <span className="text-[10px] text-slate-400 font-bold uppercase">{item.weight} • {item.sensor}</span>
+                                            </div>
+                                        </div>
+                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
+
+                    {currentStep === 17 && (
+                        <motion.div 
+                            key="step-17"
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                        >
+                            <h2 className="text-2xl font-black text-slate-900 mb-8">Acoustic Engineering</h2>
+                            <div className="grid grid-cols-1 gap-4 max-h-96 overflow-y-auto p-4 bg-slate-50/50 rounded-3xl border border-slate-100">
+                                {hardwareData.Headsets.map(item => (
+                                    <button 
+                                        key={item.name} 
+                                        onClick={() => handleSelect('headset', item)} 
+                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 transition-all group"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
+                                                <Headphones size={20} />
+                                            </div>
+                                            <div className="text-left">
+                                                <span className="font-black text-slate-800 block">{item.name}</span>
+                                                <span className="text-[10px] text-slate-400 font-bold uppercase">{item.type} • {item.wireless ? 'Wireless' : 'Wired'}</span>
+                                            </div>
+                                        </div>
+                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
+
                     {currentStep === 9 && (
                         <motion.div 
                             key="step-9"
@@ -615,6 +765,10 @@ function Build() {
                                     {selections.case && <SummaryRow label="Chassis" value={selections.case.name} />}
                                     {selections.psu && <SummaryRow label="Power Supply" value={selections.psu.name} />}
                                     {selections.charger && <SummaryRow label="Adapter" value={selections.charger.name} />}
+                                    {selections.monitor && <SummaryRow label="Display" value={selections.monitor.name} />}
+                                    {selections.keyboard && <SummaryRow label="Keyboard" value={selections.keyboard.name} />}
+                                    {selections.mouse && <SummaryRow label="Mouse" value={selections.mouse.name} />}
+                                    {selections.headset && <SummaryRow label="Headset" value={selections.headset.name} />}
                                     
                                     {!isMac && (
                                         <div className="pt-4 mt-4 border-t border-white/10 space-y-2">
@@ -713,7 +867,7 @@ function Build() {
                     )}
                 </AnimatePresence>
 
-                {currentStep > 0 && currentStep < 9 && (
+                {currentStep > 0 && currentStep !== 9 && (
                     <div className="mt-12 pt-8 border-t border-slate-100 flex justify-between items-center">
                         <button 
                             onClick={() => dispatch({ type: 'PREVIOUS_STEP' })} 
