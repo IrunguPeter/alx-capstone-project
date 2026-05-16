@@ -61,7 +61,7 @@ const Questions = () => {
       Return ONLY a JSON object with these EXACT keys:
       "CPU", "GPU", "SSD", "RAM", "Motherboard", "Case", "Powersupply Unit".
       
-      The values should be a string containing the part name and its estimated 2026 price in parentheses, e.g., "Intel Core i7-16700K ($350)".
+      The values should be a string containing the part name and its estimated 2026 price in parentheses, e.g., "Intel Core Ultra X9 388H ($650)".
       
       Ensure the total price is close to $${budget}.
       Do not include any Markdown formatting, backticks, or extra text. Just the raw JSON.`;

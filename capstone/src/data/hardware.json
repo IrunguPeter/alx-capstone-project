@@ -1,151 +1,88 @@
 {
   "os": [
-    { "name": "MacOS 16 (Sequoia Successor)", "price": 0 },
-    { "name": "Windows 12 Pro", "price": 149 },
-    { "name": "Windows 11 Pro", "price": 139 },
-    { "name": "Linux (Zorin OS 18)", "price": 0 },
-    { "name": "Linux (Fedora 44)", "price": 0 },
-    { "name": "Linux (Bazzite)", "price": 0 },
-    { "name": "Linux (Steam OS 4.0)", "price": 0 },
-    { "name": "Ubuntu 26.04 LTS", "price": 0 },
-    { "name": "ChromeOS Flex", "price": 0 },
-    { "name": "FreeBSD 15", "price": 0 }
+    { "name": "MacOS Sequoia", "price": 0 },
+    { "name": "Windows 11 Home", "price": 139 },
+    { "name": "Windows 11 Pro", "price": 199 },
+    { "name": "Ubuntu 24.04 LTS", "price": 0 },
+    { "name": "Fedora Workstation 44", "price": 0 },
+    { "name": "Arch Linux", "price": 0 },
+    { "name": "Linux Mint 23", "price": 0 },
+    { "name": "Debian 13", "price": 0 }
   ],
   "mac_hardware": {
-    "MacBook": [
-      { "name": "MacBook Air (M5)", "price": 1099 },
-      { "name": "MacBook Pro 14\" (M5 Pro)", "price": 1999 },
-      { "name": "MacBook Pro 14\" (M5 Max)", "price": 3199 },
-      { "name": "MacBook Pro 16\" (M5 Max)", "price": 3499 },
-      { "name": "MacBook Pro 16\" (M5 Ultra - Custom)", "price": 4999 },
-      { "name": "MacBook Air 15\" (M5)", "price": 1299 },
-      { "name": "MacBook (12-inch OLED Revival)", "price": 899 },
-      { "name": "MacBook Pro 14\" (M4 Pro)", "price": 1799 }
+    "MacBook Air": [
+      { "name": "MacBook Air 13\" (M5, 10-Core CPU, 8-Core GPU)", "price": 1099 },
+      { "name": "MacBook Air 13\" (M5, 10-Core CPU, 10-Core GPU)", "price": 1199 },
+      { "name": "MacBook Air 15\" (M5, 10-Core CPU, 10-Core GPU)", "price": 1299 }
+    ],
+    "MacBook Pro": [
+      { "name": "MacBook Pro 14\" (M5, 10-Core CPU, 10-Core GPU)", "price": 1599 },
+      { "name": "MacBook Pro 14\" (M5 Pro, 18-Core CPU, 20-Core GPU)", "price": 1999 },
+      { "name": "MacBook Pro 14\" (M5 Max, 18-Core CPU, 40-Core GPU)", "price": 3199 },
+      { "name": "MacBook Pro 16\" (M5 Pro, 18-Core CPU, 20-Core GPU)", "price": 2499 },
+      { "name": "MacBook Pro 16\" (M5 Max, 18-Core CPU, 40-Core GPU)", "price": 3499 }
     ],
     "Mac mini": [
-      { "name": "Mac mini (M5)", "price": 599 },
-      { "name": "Mac mini (M5 Pro)", "price": 1399 },
-      { "name": "Mac mini (M4)", "price": 499 },
-      { "name": "Mac mini (M5 Max - Special Edition)", "price": 1999 }
+      { "name": "Mac mini (M4, 10-Core CPU, 10-Core GPU)", "price": 599 },
+      { "name": "Mac mini (M4 Pro, 12-Core CPU, 16-Core GPU)", "price": 1399 }
     ],
-    "Studio": [
-      { "name": "Mac Studio (M5 Max)", "price": 1999 },
-      { "name": "Mac Studio (M5 Ultra)", "price": 3999 },
-      { "name": "Mac Studio (M4 Ultra)", "price": 3499 },
-      { "name": "Mac Pro (M5 Extreme)", "price": 6999 }
+    "Mac Studio": [
+      { "name": "Mac Studio (M4 Max, 14-Core CPU, 32-Core GPU)", "price": 1999 },
+      { "name": "Mac Studio (M4 Ultra, 28-Core CPU, 64-Core GPU)", "price": 3999 }
+    ],
+    "iMac": [
+      { "name": "iMac 24\" (M4, 10-Core CPU, 10-Core GPU)", "price": 1299 }
     ]
   },
   "CPU": {
     "Apple Silicon": [
-      { "name": "M5 Standard", "price": 0, "tdp": 15 },
-      { "name": "M5 Pro", "price": 450, "tdp": 40 },
-      { "name": "M5 Max", "price": 900, "tdp": 70 },
-      { "name": "M5 Ultra", "price": 1800, "tdp": 140 },
-      { "name": "M5 Extreme", "price": 3500, "tdp": 280 },
-      { "name": "M4 Max", "price": 700, "tdp": 75 }
+      { "name": "M5", "price": 0, "tdp": 20 },
+      { "name": "M5 Pro", "price": 400, "tdp": 40 },
+      { "name": "M5 Max", "price": 800, "tdp": 75 },
+      { "name": "M4 Ultra", "price": 1500, "tdp": 120 }
     ],
     "Intel": [
-      { "name": "Core Ultra 9 385K (Panther Lake)", "price": 629, "socket": "LGA1851", "ramType": "DDR6", "tdp": 125 },
-      { "name": "Core Ultra 7 365K", "price": 420, "socket": "LGA1851", "ramType": "DDR6", "tdp": 125 },
-      { "name": "Core Ultra 5 345K", "price": 329, "socket": "LGA1851", "ramType": "DDR6", "tdp": 125 },
-      { "name": "Core Ultra 9 395KS (Special Edition)", "price": 799, "socket": "LGA1851", "ramType": "DDR6", "tdp": 150 },
-      { "name": "Core Ultra 7 355", "price": 389, "socket": "LGA1851", "ramType": "DDR6", "tdp": 65 },
-      { "name": "Core Ultra 5 335", "price": 279, "socket": "LGA1851", "ramType": "DDR6", "tdp": 65 },
-      { "name": "Core Ultra 3 315K", "price": 189, "socket": "LGA1851", "ramType": "DDR6", "tdp": 65 },
-      { "name": "Core Ultra 9 485K (Nova Lake Early Access)", "price": 699, "socket": "LGA1900", "ramType": "DDR6", "tdp": 125 },
-      { "name": "Core Ultra 7 465K", "price": 449, "socket": "LGA1900", "ramType": "DDR6", "tdp": 125 },
-      { "name": "Core Ultra 5 445K", "price": 349, "socket": "LGA1900", "ramType": "DDR6", "tdp": 125 },
-      { "name": "Core Ultra 9 285K", "price": 549, "socket": "LGA1851", "ramType": "DDR5", "tdp": 125 },
-      { "name": "Core i9-16900KS", "price": 749, "socket": "LGA1851", "ramType": "DDR6", "tdp": 150 },
-      { "name": "Core i7-16700K", "price": 399, "socket": "LGA1851", "ramType": "DDR6", "tdp": 125 },
-      { "name": "Core i5-16600K", "price": 289, "socket": "LGA1851", "ramType": "DDR6", "tdp": 125 },
-      { "name": "Xeon W9-3500", "price": 2499, "socket": "LGA4677", "ramType": "DDR5 ECC", "tdp": 350 },
-      { "name": "Xeon W7-2500", "price": 1299, "socket": "LGA4677", "ramType": "DDR5 ECC", "tdp": 220 },
-      { "name": "Xeon W5-2500", "price": 899, "socket": "LGA4677", "ramType": "DDR5 ECC", "tdp": 180 }
+      { "name": "Core Ultra X9 388H (Panther Lake)", "price": 649, "socket": "FCBGA2114", "ramType": "DDR5", "tdp": 45 },
+      { "name": "Core Ultra X7 368H (Panther Lake)", "price": 449, "socket": "FCBGA2114", "ramType": "DDR5", "tdp": 45 },
+      { "name": "Core Ultra 9 285K (Arrow Lake)", "price": 589, "socket": "LGA1851", "ramType": "DDR5", "tdp": 125 },
+      { "name": "Core Ultra 7 265K (Arrow Lake)", "price": 394, "socket": "LGA1851", "ramType": "DDR5", "tdp": 125 },
+      { "name": "Core Ultra 5 245K (Arrow Lake)", "price": 309, "socket": "LGA1851", "ramType": "DDR5", "tdp": 125 }
     ],
     "AMD": [
-      { "name": "Ryzen 9 10950X (Zen 6)", "price": 649, "socket": "AM5", "ramType": "DDR6", "tdp": 170 },
-      { "name": "Ryzen 9 10950X3D", "price": 849, "socket": "AM5", "ramType": "DDR6", "tdp": 120 },
-      { "name": "Ryzen 7 10700X", "price": 399, "socket": "AM5", "ramType": "DDR6", "tdp": 65 },
-      { "name": "Ryzen 5 10600X", "price": 299, "socket": "AM5", "ramType": "DDR6", "tdp": 65 },
-      { "name": "Ryzen 9 11950X (Zen 7 Preview)", "price": 749, "socket": "AM6", "ramType": "DDR6", "tdp": 170 },
-      { "name": "Ryzen 7 11700X", "price": 429, "socket": "AM6", "ramType": "DDR6", "tdp": 105 },
-      { "name": "Ryzen 5 11600X", "price": 319, "socket": "AM6", "ramType": "DDR6", "tdp": 105 },
-      { "name": "Ryzen 9 10900 (Non-X)", "price": 549, "socket": "AM5", "ramType": "DDR6", "tdp": 65 },
-      { "name": "Ryzen 7 10700", "price": 329, "socket": "AM5", "ramType": "DDR6", "tdp": 65 },
-      { "name": "Ryzen 5 10600", "price": 229, "socket": "AM5", "ramType": "DDR6", "tdp": 65 },
-      { "name": "Ryzen 3 10100", "price": 119, "socket": "AM5", "ramType": "DDR6", "tdp": 45 },
-      { "name": "Ryzen 9 9950X3D", "price": 699, "socket": "AM5", "ramType": "DDR5", "tdp": 120 },
-      { "name": "Ryzen 7 9800X3D", "price": 499, "socket": "AM5", "ramType": "DDR5", "tdp": 120 },
-      { "name": "Threadripper 9980WX", "price": 4999, "socket": "sTR5", "ramType": "DDR5", "tdp": 350 },
-      { "name": "Threadripper 9970X", "price": 3299, "socket": "sTR5", "ramType": "DDR5", "tdp": 280 },
-      { "name": "Threadripper 9960X", "price": 2199, "socket": "sTR5", "ramType": "DDR5", "tdp": 280 },
-      { "name": "Ryzen 3 10300", "price": 129, "socket": "AM5", "ramType": "DDR6", "tdp": 35 }
+      { "name": "Ryzen 9 9950X", "price": 649, "socket": "AM5", "ramType": "DDR5", "tdp": 170 },
+      { "name": "Ryzen 9 9900X", "price": 499, "socket": "AM5", "ramType": "DDR5", "tdp": 120 },
+      { "name": "Ryzen 7 9800X3D", "price": 479, "socket": "AM5", "ramType": "DDR5", "tdp": 120 },
+      { "name": "Ryzen 7 9700X", "price": 359, "socket": "AM5", "ramType": "DDR5", "tdp": 65 },
+      { "name": "Ryzen 5 9600X", "price": 279, "socket": "AM5", "ramType": "DDR5", "tdp": 65 }
     ]
   },
   "Motherboard": [
-    { "name": "ASUS ROG Maximus Z990 Extreme", "price": 999, "socket": "LGA1851", "ramType": "DDR6", "size": "E-ATX", "tdp": 60 },
-    { "name": "MSI MEG Z990 GODLIKE", "price": 1199, "socket": "LGA1851", "ramType": "DDR6", "size": "E-ATX", "tdp": 65 },
-    { "name": "Gigabyte Z990 AORUS Master", "price": 499, "socket": "LGA1851", "ramType": "DDR6", "size": "ATX", "tdp": 45 },
-    { "name": "ASUS ProArt Z990-Creator WiFi", "price": 550, "socket": "LGA1851", "ramType": "DDR6", "size": "ATX", "tdp": 40 },
-    { "name": "MSI MAG B950 Tomahawk WiFi", "price": 259, "socket": "LGA1851", "ramType": "DDR6", "size": "ATX", "tdp": 30 },
-    { "name": "ASUS ROG Maximus Z1090 Hero", "price": 799, "socket": "LGA1900", "ramType": "DDR6", "size": "ATX", "tdp": 55 },
-    { "name": "MSI MEG Z1090 ACE", "price": 699, "socket": "LGA1900", "ramType": "DDR6", "size": "ATX", "tdp": 50 },
-    { "name": "ASUS ROG Crosshair X970E Hero", "price": 750, "socket": "AM5", "ramType": "DDR6", "size": "ATX", "tdp": 55 },
-    { "name": "MSI MPG X970 Carbon WiFi", "price": 480, "socket": "AM5", "ramType": "DDR6", "size": "ATX", "tdp": 45 },
-    { "name": "ASRock X970 Taichi", "price": 599, "socket": "AM5", "ramType": "DDR6", "size": "ATX", "tdp": 50 },
-    { "name": "Gigabyte X970 AORUS Pro ICE", "price": 399, "socket": "AM5", "ramType": "DDR6", "size": "ATX", "tdp": 40 },
-    { "name": "ASRock B950 Steel Legend WiFi", "price": 219, "socket": "AM5", "ramType": "DDR6", "size": "ATX", "tdp": 30 },
-    { "name": "ASUS ROG Crosshair X1070 Hero", "price": 799, "socket": "AM6", "ramType": "DDR6", "size": "ATX", "tdp": 60 },
-    { "name": "Gigabyte X1070 AORUS Extreme", "price": 899, "socket": "AM6", "ramType": "DDR6", "size": "E-ATX", "tdp": 65 },
-    { "name": "ASRock X1070 Taichi Carrara", "price": 649, "socket": "AM6", "ramType": "DDR6", "size": "ATX", "tdp": 55 },
-    { "name": "ASUS TUF Gaming B950-Plus", "price": 220, "socket": "LGA1851", "ramType": "DDR6", "size": "ATX", "tdp": 35 },
-    { "name": "Gigabyte B950M AORUS Elite", "price": 189, "socket": "AM5", "ramType": "DDR6", "size": "Micro-ATX", "tdp": 30 },
-    { "name": "EVGA Z990 FTW (Revival)", "price": 450, "socket": "LGA1851", "ramType": "DDR6", "size": "ATX", "tdp": 50 },
-    { "name": "NZXT N9 Z990", "price": 350, "socket": "LGA1851", "ramType": "DDR6", "size": "ATX", "tdp": 40 },
-    { "name": "ASUS Prime X1070-P", "price": 299, "socket": "AM6", "ramType": "DDR6", "size": "ATX", "tdp": 35 }
+    { "name": "ASUS ROG Maximus Z890 Hero", "price": 699, "socket": "LGA1851", "ramType": "DDR5", "size": "ATX", "tdp": 50 },
+    { "name": "MSI MPG Z890 Carbon WiFi", "price": 499, "socket": "LGA1851", "ramType": "DDR5", "size": "ATX", "tdp": 45 },
+    { "name": "Gigabyte Z890 AORUS Master", "price": 549, "socket": "LGA1851", "ramType": "DDR5", "size": "ATX", "tdp": 45 },
+    { "name": "ASRock Z890 Taichi", "price": 599, "socket": "LGA1851", "ramType": "DDR5", "size": "ATX", "tdp": 45 },
+    { "name": "ASUS ROG Crosshair X870E Hero", "price": 699, "socket": "AM5", "ramType": "DDR5", "size": "ATX", "tdp": 50 },
+    { "name": "MSI MPG X870E Carbon WiFi", "price": 499, "socket": "AM5", "ramType": "DDR5", "size": "ATX", "tdp": 45 },
+    { "name": "Gigabyte X870E AORUS Master", "price": 499, "socket": "AM5", "ramType": "DDR5", "size": "ATX", "tdp": 45 },
+    { "name": "ASRock X870E Taichi", "price": 549, "socket": "AM5", "ramType": "DDR5", "size": "ATX", "tdp": 45 },
+    { "name": "Mobile Panther Lake Platform", "price": 0, "socket": "FCBGA2114", "ramType": "DDR5", "size": "ITX", "tdp": 0 }
   ],
   "GPU": {
     "NVIDIA": [
-      { "name": "RTX 6090 Founders Edition", "price": 1999, "tdp": 550, "length": 358 },
-      { "name": "RTX 6090 Ti (Titan-Class)", "price": 2499, "tdp": 650, "length": 365 },
-      { "name": "RTX 6080 Ti", "price": 1399, "tdp": 400, "length": 340 },
-      { "name": "RTX 6080 Super", "price": 1099, "tdp": 350, "length": 336 },
-      { "name": "RTX 6080", "price": 1199, "tdp": 350, "length": 336 },
-      { "name": "RTX 6070 Ti Super", "price": 899, "tdp": 285, "length": 310 },
-      { "name": "RTX 6070 Super", "price": 799, "tdp": 220, "length": 300 },
-      { "name": "RTX 6070", "price": 649, "tdp": 200, "length": 280 },
-      { "name": "RTX 6060 Ti", "price": 499, "tdp": 160, "length": 260 },
-      { "name": "RTX 6060", "price": 349, "tdp": 130, "length": 240 },
-      { "name": "RTX 6050", "price": 299, "tdp": 100, "length": 220 },
-      { "name": "RTX 5090 (Classic)", "price": 1799, "tdp": 600, "length": 350 },
-      { "name": "RTX 5080 (Legacy)", "price": 999, "tdp": 320, "length": 336 },
-      { "name": "RTX 5070 (Legacy)", "price": 599, "tdp": 220, "length": 280 },
-      { "name": "Titan AI (2026)", "price": 2999, "tdp": 650, "length": 360 }
+      { "name": "RTX 5090 (Blackwell)", "price": 1799, "tdp": 500, "length": 320 },
+      { "name": "RTX 5080 (Blackwell)", "price": 1199, "tdp": 350, "length": 315 },
+      { "name": "RTX 4090 Founders Edition", "price": 1599, "tdp": 450, "length": 304 },
+      { "name": "RTX 4080 Super", "price": 999, "tdp": 320, "length": 310 }
     ],
     "AMD": [
-      { "name": "RX 11900 XTX (RDNA 6 Early Access)", "price": 1299, "tdp": 420, "length": 350 },
-      { "name": "RX 10950 XTX (Liquid Cooled)", "price": 1399, "tdp": 450, "length": 300 },
-      { "name": "RX 10900 XTX (RDNA 5)", "price": 1099, "tdp": 380, "length": 344 },
-      { "name": "RX 10900 XT", "price": 949, "tdp": 330, "length": 330 },
-      { "name": "RX 10800 XT", "price": 849, "tdp": 300, "length": 310 },
-      { "name": "RX 10800", "price": 699, "tdp": 260, "length": 300 },
-      { "name": "RX 10700 XT", "price": 649, "tdp": 240, "length": 280 },
-      { "name": "RX 10700", "price": 549, "tdp": 210, "length": 280 },
-      { "name": "RX 10600 XT", "price": 449, "tdp": 180, "length": 260 },
-      { "name": "RX 10600", "price": 349, "tdp": 150, "length": 240 },
-      { "name": "RX 10500 XT", "price": 249, "tdp": 120, "length": 220 },
-      { "name": "RX 9900 XTX", "price": 899, "tdp": 355, "length": 344 }
+      { "name": "RX 8900 XTX (RDNA 4)", "price": 999, "tdp": 350, "length": 290 },
+      { "name": "RX 8800 XT (RDNA 4)", "price": 649, "tdp": 280, "length": 280 },
+      { "name": "RX 7900 XTX", "price": 949, "tdp": 355, "length": 287 }
     ],
     "Intel": [
-      { "name": "Arc C990 (Celestial)", "price": 799, "tdp": 280, "length": 312 },
-      { "name": "Arc C970", "price": 649, "tdp": 250, "length": 300 },
-      { "name": "Arc C770", "price": 449, "tdp": 200, "length": 280 },
-      { "name": "Arc C750", "price": 379, "tdp": 180, "length": 280 },
-      { "name": "Arc C550", "price": 299, "tdp": 150, "length": 260 },
-      { "name": "Arc B780 (Battlemage)", "price": 329, "tdp": 225, "length": 280 },
-      { "name": "Arc B580", "price": 199, "tdp": 150, "length": 260 },
-      { "name": "Arc B570", "price": 169, "tdp": 140, "length": 240 }
+      { "name": "Arc B880 (Battlemage)", "price": 449, "tdp": 225, "length": 280 },
+      { "name": "Arc B580 (Battlemage)", "price": 249, "tdp": 190, "length": 240 },
+      { "name": "Arc A770 (16GB)", "price": 299, "tdp": 225, "length": 267 }
     ]
   },
   "ram": {
@@ -153,116 +90,57 @@
       { "size": "16GB Unified", "price": 0 },
       { "size": "32GB Unified", "price": 400 },
       { "size": "64GB Unified", "price": 800 },
-      { "size": "128GB Unified", "price": 1600 },
-      { "size": "256GB Unified", "price": 3200 },
-      { "size": "512GB Unified (Ultra Only)", "price": 6400 }
+      { "size": "128GB Unified", "price": 1600 }
     ],
     "pc": [
-      { "size": "32GB (2x16GB) DDR6-10200", "price": 450, "ramType": "DDR6", "tdp": 18 },
-      { "size": "48GB (2x24GB) DDR6-10200", "price": 650, "ramType": "DDR6", "tdp": 22 },
-      { "size": "64GB (2x32GB) DDR6-9600", "price": 850, "ramType": "DDR6", "tdp": 25 },
-      { "size": "96GB (2x48GB) DDR6-9600", "price": 1200, "ramType": "DDR6", "tdp": 30 },
-      { "size": "128GB (4x32GB) DDR6-8400", "price": 1600, "ramType": "DDR6", "tdp": 35 },
-      { "size": "192GB (4x48GB) DDR6-8400", "price": 2400, "ramType": "DDR6", "tdp": 45 },
-      { "size": "256GB (4x64GB) DDR6-8000", "price": 3200, "ramType": "DDR6", "tdp": 45 },
-      { "size": "32GB (2x16GB) DDR5-9000 (OC)", "price": 350, "ramType": "DDR5", "tdp": 18 },
-      { "size": "64GB (2x32GB) DDR5-8400", "price": 600, "ramType": "DDR5", "tdp": 22 },
-      { "size": "32GB (2x16GB) DDR5-8000", "price": 280, "ramType": "DDR5", "tdp": 15 },
-      { "size": "64GB (2x32GB) DDR5-7200", "price": 550, "ramType": "DDR5", "tdp": 20 },
-      { "size": "16GB (2x8GB) DDR5-6000", "price": 120, "ramType": "DDR5", "tdp": 10 },
-      { "size": "128GB (2x64GB) DDR5-6400", "price": 1100, "ramType": "DDR5", "tdp": 25 },
-      { "size": "256GB (8x32GB) DDR5-5600 ECC", "price": 2800, "ramType": "DDR5 ECC", "tdp": 50 }
+      { "size": "32GB (2x16GB) DDR5-6000", "price": 110, "ramType": "DDR5", "tdp": 10 },
+      { "size": "64GB (2x32GB) DDR5-6400", "price": 220, "ramType": "DDR5", "tdp": 15 },
+      { "size": "48GB (2x24GB) DDR5-7200", "price": 180, "ramType": "DDR5", "tdp": 12 },
+      { "size": "32GB (2x16GB) DDR5-8000", "price": 250, "ramType": "DDR5", "tdp": 15 },
+      { "size": "96GB (2x48GB) DDR5-6400", "price": 350, "ramType": "DDR5", "tdp": 20 }
     ]
   },
   "Cooling": [
-    { "name": "Noctua NH-D16 Chromax", "price": 160, "type": "Air", "tdp": 5, "height": 168 },
-    { "name": "Arctic Liquid Freezer IV 420", "price": 180, "type": "Liquid", "tdp": 25, "height": 65 },
-    { "name": "Corsair iCUE Link H170i LCD", "price": 350, "type": "Liquid", "tdp": 30, "height": 55 },
-    { "name": "Lian Li Galahad III Performance", "price": 280, "type": "Liquid", "tdp": 25, "height": 55 },
-    { "name": "DeepCool Assassin V", "price": 110, "type": "Air", "tdp": 12, "height": 165 },
-    { "name": "Be Quiet! Dark Rock Pro 6", "price": 100, "type": "Air", "tdp": 8, "height": 163 },
-    { "name": "Phanteks Glacier One 420D30", "price": 220, "type": "Liquid", "tdp": 25, "height": 60 },
-    { "name": "Thermalright Peerless Assassin 140", "price": 45, "type": "Air", "tdp": 10, "height": 158 },
-    { "name": "IceGiant ProSiphon Elite (2026)", "price": 200, "type": "Phase Change", "tdp": 40, "height": 164 }
+    { "name": "Noctua NH-D15 G2", "price": 149, "type": "Air", "tdp": 10, "height": 168 },
+    { "name": "Arctic Liquid Freezer III 360", "price": 115, "type": "Liquid", "tdp": 20, "height": 65 },
+    { "name": "NZXT Kraken Elite 360", "price": 279, "type": "Liquid", "tdp": 25, "height": 55 }
   ],
   "Storage": [
-    { "size": "10TB Gen6 NVMe SSD (22GB/s)", "price": 1899, "tdp": 20 },
-    { "size": "4TB Gen6 NVMe SSD (18GB/s)", "price": 999, "tdp": 15 },
-    { "size": "2TB Gen6 NVMe SSD (18GB/s)", "price": 550, "tdp": 15 },
-    { "size": "1TB Gen6 NVMe SSD", "price": 299, "tdp": 10 },
-    { "size": "512GB Gen6 NVMe SSD", "price": 159, "tdp": 8 },
-    { "size": "16TB Gen5 NVMe SSD", "price": 2400, "tdp": 12 },
-    { "size": "8TB Gen5 NVMe SSD", "price": 1200, "tdp": 12 },
-    { "size": "4TB Gen5 NVMe SSD", "price": 599, "tdp": 12 },
-    { "size": "2TB Gen5 NVMe SSD", "price": 320, "tdp": 10 },
-    { "size": "1TB Gen5 NVMe SSD", "price": 180, "tdp": 10 },
-    { "size": "30TB Enterprise NVMe SSD", "price": 4500, "tdp": 25 },
-    { "size": "100TB SATA Enterprise SSD", "price": 8999, "tdp": 15 },
-    { "size": "32TB Enterprise SATA SSD", "price": 3500, "tdp": 8 },
-    { "size": "16TB SATA SSD", "price": 1200, "tdp": 6 },
-    { "size": "8TB SATA SSD", "price": 550, "tdp": 5 },
-    { "size": "4TB SATA SSD", "price": 240, "tdp": 5 },
-    { "size": "2TB Gen4 NVMe SSD (Legacy)", "price": 150, "tdp": 7 },
-    { "size": "2TB External USB5 SSD (40Gbps)", "price": 399, "tdp": 5 }
+    { "size": "2TB Samsung 990 Pro (Gen4)", "price": 170, "tdp": 7 },
+    { "size": "4TB Samsung 990 Pro (Gen4)", "price": 330, "tdp": 8 },
+    { "size": "2TB Crucial T705 (Gen5)", "price": 280, "tdp": 12 },
+    { "size": "4TB Crucial T705 (Gen5)", "price": 520, "tdp": 14 }
   ],
   "Case": [
-    { "name": "Lian Li O11 Dynamic EVO XL (v2)", "price": 250, "size": "ATX", "gpuClearance": 460, "cpuClearance": 175 },
-    { "name": "Fractal Design Terra (v2)", "price": 180, "size": "ITX", "gpuClearance": 330, "cpuClearance": 80 },
-    { "name": "NZXT H9 Flow (2026 Edition)", "price": 199, "size": "ATX", "gpuClearance": 435, "cpuClearance": 170 },
-    { "name": "Phanteks NV9", "price": 280, "size": "ATX", "gpuClearance": 480, "cpuClearance": 190 },
-    { "name": "Hyte Y70 Touch Infinite", "price": 399, "size": "ATX", "gpuClearance": 422, "cpuClearance": 180 },
-    { "name": "Corsair 6500X", "price": 210, "size": "ATX", "gpuClearance": 420, "cpuClearance": 170 },
-    { "name": "Cooler Master HAF 700 EVO", "price": 550, "size": "E-ATX", "gpuClearance": 490, "cpuClearance": 195 },
-    { "name": "SSUPD Meshroom S (v2)", "price": 160, "size": "ITX", "gpuClearance": 340, "cpuClearance": 75 },
-    { "name": "Dan Case A4-SFX (v5)", "price": 220, "size": "ITX", "gpuClearance": 325, "cpuClearance": 48 }
+    { "name": "Lian Li O11 Dynamic EVO RGB", "price": 169, "size": "ATX", "gpuClearance": 455, "cpuClearance": 167 },
+    { "name": "NZXT H9 Flow", "price": 159, "size": "ATX", "gpuClearance": 435, "cpuClearance": 165 },
+    { "name": "Fractal Design North", "price": 139, "size": "ATX", "gpuClearance": 355, "cpuClearance": 170 }
   ],
   "PSU": [
-    { "name": "Corsair AX1600i (ATX 3.2)", "price": 599, "wattage": 1600 },
-    { "name": "Seasonic Vertex GX-1200", "price": 260, "wattage": 1200 },
-    { "name": "be quiet! Dark Power Pro 13 1600W", "price": 450, "wattage": 1600 },
-    { "name": "Corsair RM850e", "price": 140, "wattage": 850 },
-    { "name": "EVGA 750 BP", "price": 90, "wattage": 750 }
+    { "name": "Corsair RM850x (2024)", "price": 149, "wattage": 850 },
+    { "name": "Corsair RM1000x (2024)", "price": 189, "wattage": 1000 },
+    { "name": "Seasonic Prime TX-1300", "price": 449, "wattage": 1300 }
   ],
   "chargers": [
-    { "name": "240W USB-C PD 3.1", "price": 129 },
-    { "name": "140W USB-C GaN", "price": 89 },
-    { "name": "100W Dual USB-C GaN", "price": 59 },
-    { "name": "300W Desktop Charging Station", "price": 199 },
-    { "name": "96W USB-C Apple", "price": 79 },
-    { "name": "70W USB-C Apple", "price": 59 }
+    { "name": "70W USB-C", "price": 20 },
+    { "name": "96W USB-C", "price": 40 },
+    { "name": "140W USB-C", "price": 99 },
+    { "name": "240W MagSafe 3", "price": 129 }
   ],
   "Monitors": [
-    { "name": "Samsung Odyssey Neo G9 (v3) 57\"", "price": 2499, "resolution": "7680x2160", "refreshRate": "240Hz", "panelType": "Mini-LED" },
-    { "name": "LG UltraGear 32\" OLED (4K)", "price": 1299, "resolution": "3840x2160", "refreshRate": "480Hz", "panelType": "OLED" },
-    { "name": "ASUS ROG Swift 27\" 1440p OLED", "price": 899, "resolution": "2560x1440", "refreshRate": "480Hz", "panelType": "OLED" },
-    { "name": "Apple Studio Display (Nano-texture)", "price": 1899, "resolution": "5120x2880", "refreshRate": "60Hz", "panelType": "IPS" },
-    { "name": "Apple Pro Display XDR 2", "price": 5999, "resolution": "6016x3384", "refreshRate": "120Hz", "panelType": "Mini-LED" },
-    { "name": "Dell UltraSharp 32\" 6K", "price": 2200, "resolution": "6144x3456", "refreshRate": "60Hz", "panelType": "IPS Black" },
-    { "name": "Gigabyte M27Q (2026 Edition)", "price": 299, "resolution": "2560x1440", "refreshRate": "180Hz", "panelType": "IPS" }
+    { "name": "LG UltraGear 32GS95UE OLED", "price": 1399, "resolution": "3840x2160", "refreshRate": "240Hz/480Hz", "panelType": "OLED" },
+    { "name": "Samsung Odyssey Neo G9 G95NC 57\"", "price": 2299, "resolution": "7680x2160", "refreshRate": "240Hz", "panelType": "Mini-LED" }
   ],
   "Keyboards": [
-    { "name": "Keychron Q1 Max (HE Switches)", "price": 210, "switchType": "Magnetic/Hall Effect", "formFactor": "75%" },
-    { "name": "Logitech MX Keys S (v2)", "price": 119, "switchType": "Scissor", "formFactor": "Full Size" },
-    { "name": "Wooting 60HE+", "price": 175, "switchType": "Lekker Magnetic", "formFactor": "60%" },
-    { "name": "Razer Huntsman V3 Pro", "price": 249, "switchType": "Optical", "formFactor": "Full Size" },
-    { "name": "Apple Magic Keyboard with Touch ID", "price": 149, "switchType": "Scissor", "formFactor": "Full Size" },
-    { "name": "SteelSeries Apex Pro TKL (2026)", "price": 199, "switchType": "OmniPoint 3.0", "formFactor": "TKL" }
+    { "name": "Logitech G Pro X 60 Lightspeed", "price": 179, "switchType": "Optical", "formFactor": "60%" },
+    { "name": "Razer Huntsman V3 Pro TKL", "price": 219, "switchType": "Analog Optical", "formFactor": "TKL" }
   ],
   "Mice": [
-    { "name": "Logitech G Pro X Superlight 3", "price": 179, "sensor": "HERO 3", "weight": "49g" },
-    { "name": "Razer DeathAdder V4 Pro", "price": 159, "sensor": "Focus Pro 40K", "weight": "55g" },
-    { "name": "Apple Magic Mouse (USB-C)", "price": 79, "sensor": "Laser", "weight": "99g" },
-    { "name": "Finalmouse Ultralight X", "price": 189, "sensor": "PAW3395", "weight": "35g" },
-    { "name": "Logitech MX Master 4S", "price": 109, "sensor": "Darkfield", "weight": "141g" },
-    { "name": "Zowie EC2-CW (v2)", "price": 149, "sensor": "3395", "weight": "75g" }
+    { "name": "Logitech G Pro X Superlight 2 DEX", "price": 159, "sensor": "HERO 2", "weight": "60g" },
+    { "name": "Razer DeathAdder V3 Pro", "price": 149, "sensor": "Focus Pro 30K", "weight": "63g" }
   ],
   "Headsets": [
-    { "name": "SteelSeries Arctis Nova Pro Wireless (v2)", "price": 379, "type": "Over-Ear", "wireless": true },
-    { "name": "Sony WH-1000XM6", "price": 399, "type": "Over-Ear", "wireless": true },
-    { "name": "Apple AirPods Max 2", "price": 549, "type": "Over-Ear", "wireless": true },
-    { "name": "HyperX Cloud Alpha Wireless (2026)", "price": 199, "type": "Over-Ear", "wireless": true },
-    { "name": "Beyerdynamic DT 900 Pro X", "price": 250, "type": "Open-Back", "wireless": false },
-    { "name": "Razer BlackShark V2 Pro (2026)", "price": 199, "type": "Over-Ear", "wireless": true },
-    { "name": "Audeze Maxwell (v2)", "price": 329, "type": "Planar Magnetic", "wireless": true }
+    { "name": "SteelSeries Arctis Nova Pro Wireless", "price": 349, "type": "Over-Ear", "wireless": true },
+    { "name": "Sony WH-1000XM5", "price": 399, "type": "Over-Ear", "wireless": true }
   ]
 }
