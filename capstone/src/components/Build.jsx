@@ -162,12 +162,77 @@ function reducer(state, action) {
     }
 }
 
-function SummaryRow({ label, value }) {
+function SummaryRow({ label, value, vendor, url, image }) {
     return (
-        <div className="flex justify-between items-center">
-            <span className="text-white/40 font-black uppercase tracking-[0.2em] text-[10px]">{label}</span>
-            <span className="text-white font-bold text-right text-sm">{value}</span>
+        <div className="flex justify-between items-center py-3 border-b border-white/5 last:border-0 group">
+            <div className="flex items-center gap-4 text-left">
+                <div className="w-12 h-12 rounded-xl bg-white/5 overflow-hidden border border-white/10 group-hover:border-indigo-500/50 transition-colors">
+                    <img 
+                        src={image || "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=100&auto=format&fit=crop"} 
+                        alt={label}
+                        className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity"
+                    />
+                </div>
+                <div className="flex flex-col">
+                    <span className="text-white/40 font-black uppercase tracking-[0.2em] text-[10px]">{label}</span>
+                    <span className="text-white font-bold text-sm leading-tight">{value}</span>
+                    {vendor && (
+                        <span className="text-[9px] font-black uppercase tracking-widest text-indigo-400 mt-1">
+                            Source: {vendor}
+                        </span>
+                    )}
+                </div>
+            </div>
+            {url && (
+                <a 
+                    href={url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-[10px] bg-white/5 hover:bg-white/10 text-white/60 hover:text-white px-3 py-1 rounded-lg border border-white/10 transition-all font-black uppercase tracking-widest"
+                >
+                    Link
+                </a>
+            )}
         </div>
+    );
+}
+
+function HardwareTile({ item, onClick, icon: Icon, subtext }) {
+    return (
+        <button 
+            onClick={onClick}
+            className="group relative bg-white border-2 border-slate-50 rounded-[2rem] overflow-hidden hover:border-indigo-600 hover:shadow-2xl transition-all text-left flex flex-col h-full"
+        >
+            <div className="aspect-video w-full relative overflow-hidden bg-slate-100">
+                <img 
+                    src={item.image || "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop"} 
+                    alt={item.name} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+                {item.vendor && (
+                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-white shadow-sm">
+                        <span className="text-[8px] font-black uppercase tracking-widest text-indigo-600">{item.vendor}</span>
+                    </div>
+                )}
+                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                    <div className="bg-indigo-600 text-white p-2 rounded-xl shadow-lg">
+                        <Icon size={16} />
+                    </div>
+                    <span className="text-white font-mono font-black text-lg drop-shadow-lg">${item.price}</span>
+                </div>
+            </div>
+            <div className="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 className="font-black text-slate-900 leading-tight mb-1 group-hover:text-indigo-600 transition-colors">{item.name || item.size}</h3>
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">{subtext}</p>
+                </div>
+                <div className="mt-4 flex items-center gap-2 text-indigo-600 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">
+                    <span className="text-[10px] font-black uppercase tracking-widest">Select Component</span>
+                    <ChevronLeft size={12} className="rotate-180" />
+                </div>
+            </div>
+        </button>
     );
 }
 
@@ -283,19 +348,15 @@ function Build() {
                             exit="exit"
                         >
                             <h2 className="text-2xl font-black text-slate-900 mb-8">Choose your Ecosystem</h2>
-                            <div className="grid grid-cols-2 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                                 {hardwareData.os.map((item) => (
-                                    <button 
+                                    <HardwareTile 
                                         key={item.name}
+                                        item={item}
                                         onClick={() => handleSelect('os', item)}
-                                        className="p-8 bg-white border-2 border-slate-50 rounded-3xl hover:border-indigo-600 hover:shadow-2xl hover:shadow-indigo-50 transition-all group relative overflow-hidden text-left"
-                                    >
-                                        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-125 transition-transform">
-                                            {item.name === 'MacOS' ? <Laptop size={48} /> : <Monitor size={48} />}
-                                        </div>
-                                        <span className="block text-xl font-black text-slate-900 group-hover:text-indigo-600 transition-colors">{item.name}</span>
-                                        <span className="block text-sm text-indigo-500 mt-2 font-mono font-bold">{item.price === 0 ? 'Included' : `$${item.price}`}</span>
-                                    </button>
+                                        icon={item.name.includes('Mac') ? Laptop : Monitor}
+                                        subtext="Operating System"
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -310,20 +371,22 @@ function Build() {
                             exit="exit"
                         >
                             <h2 className="text-2xl font-black text-slate-900 mb-8">Select Base Platform</h2>
-                            <div className="grid grid-cols-1 gap-4 max-h-96 overflow-y-auto p-4 bg-slate-50/50 rounded-3xl border border-slate-100 custom-scrollbar">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100 custom-scrollbar">
                                 {Object.entries(hardwareData.mac_hardware).map(([category, items]) => (
-                                    <div key={category} className="mb-6 last:mb-0">
-                                        <h3 className="text-left text-[10px] font-black text-indigo-600 uppercase tracking-[0.2em] mb-3 px-2 opacity-60">{category}</h3>
-                                        <div className="grid grid-cols-1 gap-3">
+                                    <div key={category} className="md:col-span-full mb-8 first:mt-0">
+                                        <h3 className="text-left text-[12px] font-black text-indigo-600 uppercase tracking-[0.3em] mb-6 px-4 flex items-center gap-4">
+                                            {category}
+                                            <div className="h-px flex-1 bg-indigo-100" />
+                                        </h3>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                             {items.map(item => (
-                                                <button 
-                                                    key={item.name} 
-                                                    onClick={() => handleSelect('hardware', item)} 
-                                                    className="p-5 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 hover:shadow-lg transition-all"
-                                                >
-                                                    <span className="font-bold text-slate-800">{item.name}</span>
-                                                    <span className="font-mono font-black text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg">${item.price}</span>
-                                                </button>
+                                                <HardwareTile 
+                                                    key={item.name}
+                                                    item={item}
+                                                    onClick={() => handleSelect('hardware', item)}
+                                                    icon={Laptop}
+                                                    subtext={category}
+                                                />
                                             ))}
                                         </div>
                                     </div>
@@ -341,24 +404,15 @@ function Build() {
                             exit="exit"
                         >
                             <h2 className="text-2xl font-black text-slate-900 mb-8">Select Processing Core</h2>
-                            <div className="grid grid-cols-1 gap-4 max-h-96 overflow-y-auto p-4 bg-slate-50/50 rounded-3xl border border-slate-100">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
                                 {(isMac ? hardwareData.CPU["Apple Silicon"] : [...hardwareData.CPU.Intel, ...hardwareData.CPU.AMD]).map(item => (
-                                    <button 
-                                        key={item.name} 
-                                        onClick={() => handleSelect('cpu', item)} 
-                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 hover:shadow-xl transition-all group"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
-                                                <Cpu size={20} />
-                                            </div>
-                                            <div className="text-left">
-                                                <span className="font-black text-slate-800 block">{item.name}</span>
-                                                {!isMac && <span className="text-[10px] text-slate-400 font-bold uppercase">{item.socket} • {item.ramType}</span>}
-                                            </div>
-                                        </div>
-                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.name}
+                                        item={item}
+                                        onClick={() => handleSelect('cpu', item)}
+                                        icon={Cpu}
+                                        subtext={!isMac ? `${item.socket} • ${item.ramType}` : "System on Chip"}
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -374,24 +428,15 @@ function Build() {
                         >
                             <h2 className="text-2xl font-black text-slate-900 mb-2">Compatible Motherboard</h2>
                             <p className="text-sm text-slate-500 mb-8 font-medium italic">Filtered for {selections.cpu?.socket} Socket</p>
-                            <div className="grid grid-cols-1 gap-4 max-h-96 overflow-y-auto p-4 bg-slate-50/50 rounded-3xl border border-slate-100">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
                                 {hardwareData.Motherboard.filter(mb => mb.socket === selections.cpu?.socket).map(item => (
-                                    <button 
-                                        key={item.name} 
-                                        onClick={() => handleSelect('motherboard', item)} 
-                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 hover:shadow-xl transition-all group"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
-                                                <Layout size={20} />
-                                            </div>
-                                            <div className="text-left">
-                                                <span className="font-black text-slate-800 block">{item.name}</span>
-                                                <span className="text-[10px] text-slate-400 font-bold uppercase">{item.size} • {item.ramType}</span>
-                                            </div>
-                                        </div>
-                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.name}
+                                        item={item}
+                                        onClick={() => handleSelect('motherboard', item)}
+                                        icon={Layout}
+                                        subtext={`${item.size} • ${item.ramType}`}
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -407,21 +452,15 @@ function Build() {
                         >
                             <h2 className="text-2xl font-black text-slate-900 mb-2">Graphics Processor</h2>
                             <p className="text-sm text-slate-500 mb-8 font-medium">Visual throughput and compute density.</p>
-                            <div className="grid grid-cols-1 gap-3 max-h-96 overflow-y-auto p-4 bg-slate-50/50 rounded-3xl border border-slate-100">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
                                 {[...hardwareData.GPU.NVIDIA, ...hardwareData.GPU.AMD, ...hardwareData.GPU.Intel].map(item => (
-                                    <button 
-                                        key={item.name} 
-                                        onClick={() => handleSelect('gpu', item)} 
-                                        className="p-5 bg-white border border-slate-100 rounded-2xl text-left flex justify-between items-center hover:border-indigo-600 hover:shadow-lg transition-all"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
-                                                <Gamepad2 size={20} />
-                                            </div>
-                                            <span className="font-black text-slate-800 text-sm">{item.name}</span>
-                                        </div>
-                                        <span className="text-indigo-600 font-mono font-black">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.name}
+                                        item={item}
+                                        onClick={() => handleSelect('gpu', item)}
+                                        icon={Gamepad2}
+                                        subtext={item.tdp ? `${item.tdp}W TDP` : "Integrated"}
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -437,19 +476,15 @@ function Build() {
                         >
                             <h2 className="text-2xl font-black text-slate-900 mb-2">Memory Capacity</h2>
                             {!isMac && <p className="text-sm text-slate-500 mb-8 font-medium italic">Filtered for {selections.motherboard?.ramType || selections.cpu?.ramType}</p>}
-                            <div className="grid grid-cols-1 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {(isMac ? hardwareData.ram.mac : hardwareData.ram.pc.filter(r => r.ramType === (selections.motherboard?.ramType || selections.cpu?.ramType))).map(item => (
-                                    <button 
-                                        key={item.size} 
-                                        onClick={() => handleSelect('ram', item)} 
-                                        className="p-8 bg-white border border-slate-100 rounded-3xl flex justify-between items-center hover:border-indigo-600 hover:shadow-2xl transition-all group"
-                                    >
-                                        <div className="flex items-center gap-6">
-                                            <MemoryStick className="text-slate-200 group-hover:text-indigo-100 transition-colors" size={32} />
-                                            <span className="font-black text-slate-900 text-2xl">{item.size}</span>
-                                        </div>
-                                        <span className="font-mono font-black text-indigo-600 bg-indigo-50 px-4 py-2 rounded-xl">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.size}
+                                        item={{ ...item, name: item.size }}
+                                        onClick={() => handleSelect('ram', item)}
+                                        icon={MemoryStick}
+                                        subtext={item.ramType || "Unified Memory"}
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -464,19 +499,15 @@ function Build() {
                             exit="exit"
                         >
                             <h2 className="text-2xl font-black text-slate-900 mb-8">High-Speed Storage</h2>
-                            <div className="grid grid-cols-1 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {hardwareData.Storage.map(item => (
-                                    <button 
-                                        key={item.size} 
-                                        onClick={() => handleSelect('storage', item)} 
-                                        className="p-8 bg-white border border-slate-100 rounded-3xl flex justify-between items-center hover:border-indigo-600 hover:shadow-2xl transition-all group"
-                                    >
-                                        <div className="flex items-center gap-6">
-                                            <HardDrive className="text-slate-200 group-hover:text-indigo-100 transition-colors" size={32} />
-                                            <span className="font-black text-slate-900 text-2xl">{item.size}</span>
-                                        </div>
-                                        <span className="font-mono font-black text-indigo-600 bg-indigo-50 px-4 py-2 rounded-xl">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.size}
+                                        item={{ ...item, name: item.size }}
+                                        onClick={() => handleSelect('storage', item)}
+                                        icon={HardDrive}
+                                        subtext="NVMe PCIe SSD"
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -491,24 +522,15 @@ function Build() {
                             exit="exit"
                         >
                             <h2 className="text-2xl font-black text-slate-900 mb-8">Thermal Management</h2>
-                            <div className="grid grid-cols-1 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {hardwareData.Cooling.map(item => (
-                                    <button 
-                                        key={item.name} 
-                                        onClick={() => handleSelect('cooling', item)} 
-                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 transition-all group"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
-                                                <Wind size={20} />
-                                            </div>
-                                            <div className="text-left">
-                                                <span className="font-black text-slate-800 block">{item.name}</span>
-                                                <span className="text-[10px] text-slate-400 font-bold uppercase">{item.type}</span>
-                                            </div>
-                                        </div>
-                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.name}
+                                        item={item}
+                                        onClick={() => handleSelect('cooling', item)}
+                                        icon={Wind}
+                                        subtext={`${item.type} Cooling`}
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -524,27 +546,18 @@ function Build() {
                         >
                             <h2 className="text-2xl font-black text-slate-900 mb-2">Chassis Selection</h2>
                             <p className="text-sm text-slate-500 mb-8 font-medium italic">Supporting {selections.motherboard?.size} Boards</p>
-                            <div className="grid grid-cols-1 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {hardwareData.Case.filter(c => {
                                     if (selections.motherboard?.size === 'ATX') return c.size === 'ATX';
                                     return true;
                                 }).map(item => (
-                                    <button 
-                                        key={item.name} 
-                                        onClick={() => handleSelect('case', item)} 
-                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 transition-all group"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
-                                                <Box size={20} />
-                                            </div>
-                                            <div className="text-left">
-                                                <span className="font-black text-slate-800 block">{item.name}</span>
-                                                <span className="text-[10px] text-slate-400 font-bold uppercase">{item.size}</span>
-                                            </div>
-                                        </div>
-                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.name}
+                                        item={item}
+                                        onClick={() => handleSelect('case', item)}
+                                        icon={Box}
+                                        subtext={item.size}
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -559,24 +572,15 @@ function Build() {
                             exit="exit"
                         >
                             <h2 className="text-2xl font-black text-slate-900 mb-8">Power Supply Unit</h2>
-                            <div className="grid grid-cols-1 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {hardwareData.PSU.map(item => (
-                                    <button 
-                                        key={item.name} 
-                                        onClick={() => handleSelect('psu', item)} 
-                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 transition-all group"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
-                                                <Zap size={20} />
-                                            </div>
-                                            <div className="text-left">
-                                                <span className="font-black text-slate-800 block">{item.name}</span>
-                                                <span className="text-[10px] text-slate-400 font-bold uppercase">{item.wattage}W Gold</span>
-                                            </div>
-                                        </div>
-                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.name}
+                                        item={item}
+                                        onClick={() => handleSelect('psu', item)}
+                                        icon={Zap}
+                                        subtext={`${item.wattage}W Rated`}
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -591,16 +595,15 @@ function Build() {
                             exit="exit"
                         >
                             <h2 className="text-2xl font-black text-slate-900 mb-8">Select Power Solution</h2>
-                            <div className="grid grid-cols-1 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {hardwareData.chargers.map(item => (
-                                    <button 
-                                        key={item.name} 
-                                        onClick={() => handleSelect('charger', item)} 
-                                        className="p-8 bg-white border border-slate-100 rounded-3xl flex justify-between items-center hover:border-indigo-600 hover:shadow-2xl transition-all"
-                                    >
-                                        <span className="font-black text-slate-900 text-xl">{item.name}</span>
-                                        <span className="font-mono font-black text-indigo-600 bg-indigo-50 px-4 py-2 rounded-xl">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.name}
+                                        item={item}
+                                        onClick={() => handleSelect('charger', item)}
+                                        icon={Zap}
+                                        subtext="Power Adapter"
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -614,25 +617,24 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-8">Select Visual Display</h2>
-                            <div className="grid grid-cols-1 gap-4 max-h-96 overflow-y-auto p-4 bg-slate-50/50 rounded-3xl border border-slate-100">
+                            <div className="flex justify-between items-center mb-8">
+                                <h2 className="text-2xl font-black text-slate-900">Select Visual Display</h2>
+                                <button 
+                                    onClick={() => handleSelect('monitor', null)}
+                                    className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 transition-colors border border-slate-200 hover:border-indigo-100 px-4 py-2 rounded-xl"
+                                >
+                                    Skip this Step
+                                </button>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
                                 {hardwareData.Monitors.map(item => (
-                                    <button 
-                                        key={item.name} 
-                                        onClick={() => handleSelect('monitor', item)} 
-                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 transition-all group"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
-                                                <Tv size={20} />
-                                            </div>
-                                            <div className="text-left">
-                                                <span className="font-black text-slate-800 block">{item.name}</span>
-                                                <span className="text-[10px] text-slate-400 font-bold uppercase">{item.resolution} • {item.refreshRate}</span>
-                                            </div>
-                                        </div>
-                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.name}
+                                        item={item}
+                                        onClick={() => handleSelect('monitor', item)}
+                                        icon={Tv}
+                                        subtext={`${item.resolution} • ${item.refreshRate}`}
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -646,25 +648,24 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-8">Choose Input Device</h2>
-                            <div className="grid grid-cols-1 gap-4 max-h-96 overflow-y-auto p-4 bg-slate-50/50 rounded-3xl border border-slate-100">
+                            <div className="flex justify-between items-center mb-8">
+                                <h2 className="text-2xl font-black text-slate-900">Choose Input Device</h2>
+                                <button 
+                                    onClick={() => handleSelect('keyboard', null)}
+                                    className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 transition-colors border border-slate-200 hover:border-indigo-100 px-4 py-2 rounded-xl"
+                                >
+                                    Skip this Step
+                                </button>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
                                 {hardwareData.Keyboards.map(item => (
-                                    <button 
-                                        key={item.name} 
-                                        onClick={() => handleSelect('keyboard', item)} 
-                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 transition-all group"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
-                                                <Keyboard size={20} />
-                                            </div>
-                                            <div className="text-left">
-                                                <span className="font-black text-slate-800 block">{item.name}</span>
-                                                <span className="text-[10px] text-slate-400 font-bold uppercase">{item.formFactor} • {item.switchType}</span>
-                                            </div>
-                                        </div>
-                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.name}
+                                        item={item}
+                                        onClick={() => handleSelect('keyboard', item)}
+                                        icon={Keyboard}
+                                        subtext={`${item.formFactor} • ${item.switchType}`}
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -678,25 +679,24 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-8">Precision Tracking</h2>
-                            <div className="grid grid-cols-1 gap-4 max-h-96 overflow-y-auto p-4 bg-slate-50/50 rounded-3xl border border-slate-100">
+                            <div className="flex justify-between items-center mb-8">
+                                <h2 className="text-2xl font-black text-slate-900">Precision Tracking</h2>
+                                <button 
+                                    onClick={() => handleSelect('mouse', null)}
+                                    className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 transition-colors border border-slate-200 hover:border-indigo-100 px-4 py-2 rounded-xl"
+                                >
+                                    Skip this Step
+                                </button>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
                                 {hardwareData.Mice.map(item => (
-                                    <button 
-                                        key={item.name} 
-                                        onClick={() => handleSelect('mouse', item)} 
-                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 transition-all group"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
-                                                <MousePointer2 size={20} />
-                                            </div>
-                                            <div className="text-left">
-                                                <span className="font-black text-slate-800 block">{item.name}</span>
-                                                <span className="text-[10px] text-slate-400 font-bold uppercase">{item.weight} • {item.sensor}</span>
-                                            </div>
-                                        </div>
-                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.name}
+                                        item={item}
+                                        onClick={() => handleSelect('mouse', item)}
+                                        icon={MousePointer2}
+                                        subtext={`${item.weight} • ${item.sensor}`}
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -710,25 +710,24 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-8">Acoustic Engineering</h2>
-                            <div className="grid grid-cols-1 gap-4 max-h-96 overflow-y-auto p-4 bg-slate-50/50 rounded-3xl border border-slate-100">
+                            <div className="flex justify-between items-center mb-8">
+                                <h2 className="text-2xl font-black text-slate-900">Acoustic Engineering</h2>
+                                <button 
+                                    onClick={() => handleSelect('headset', null)}
+                                    className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 transition-colors border border-slate-200 hover:border-indigo-100 px-4 py-2 rounded-xl"
+                                >
+                                    Skip this Step
+                                </button>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
                                 {hardwareData.Headsets.map(item => (
-                                    <button 
-                                        key={item.name} 
-                                        onClick={() => handleSelect('headset', item)} 
-                                        className="p-6 bg-white border border-slate-100 rounded-2xl flex justify-between items-center hover:border-indigo-600 transition-all group"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
-                                                <Headphones size={20} />
-                                            </div>
-                                            <div className="text-left">
-                                                <span className="font-black text-slate-800 block">{item.name}</span>
-                                                <span className="text-[10px] text-slate-400 font-bold uppercase">{item.type} • {item.wireless ? 'Wireless' : 'Wired'}</span>
-                                            </div>
-                                        </div>
-                                        <span className="font-mono font-black text-indigo-600">${item.price}</span>
-                                    </button>
+                                    <HardwareTile 
+                                        key={item.name}
+                                        item={item}
+                                        onClick={() => handleSelect('headset', item)}
+                                        icon={Headphones}
+                                        subtext={`${item.type} • ${item.wireless ? 'Wireless' : 'Wired'}`}
+                                    />
                                 ))}
                             </div>
                         </motion.div>
@@ -753,22 +752,22 @@ function Build() {
                                 <div className="absolute top-0 right-0 p-10 opacity-10 pointer-events-none">
                                     <Cpu size={120} />
                                 </div>
-                                <div className="space-y-3 relative z-10">
-                                    <SummaryRow label="System OS" value={selections.os?.name} />
-                                    {selections.hardware && <SummaryRow label="Base Platform" value={selections.hardware.name} />}
-                                    <SummaryRow label="Processor" value={selections.cpu?.name} />
-                                    {selections.motherboard && <SummaryRow label="Motherboard" value={selections.motherboard.name} />}
-                                    {selections.gpu && <SummaryRow label="Graphics" value={selections.gpu.name} />}
-                                    <SummaryRow label="Memory" value={selections.ram?.size} />
-                                    <SummaryRow label="Storage" value={selections.storage?.size} />
-                                    {selections.cooling && <SummaryRow label="Cooling" value={selections.cooling.name} />}
-                                    {selections.case && <SummaryRow label="Chassis" value={selections.case.name} />}
-                                    {selections.psu && <SummaryRow label="Power Supply" value={selections.psu.name} />}
-                                    {selections.charger && <SummaryRow label="Adapter" value={selections.charger.name} />}
-                                    {selections.monitor && <SummaryRow label="Display" value={selections.monitor.name} />}
-                                    {selections.keyboard && <SummaryRow label="Keyboard" value={selections.keyboard.name} />}
-                                    {selections.mouse && <SummaryRow label="Mouse" value={selections.mouse.name} />}
-                                    {selections.headset && <SummaryRow label="Headset" value={selections.headset.name} />}
+                                <div className="space-y-1 relative z-10">
+                                    <SummaryRow label="System OS" value={selections.os?.name} vendor={selections.os?.vendor} url={selections.os?.url} image={selections.os?.image} />
+                                    {selections.hardware && <SummaryRow label="Base Platform" value={selections.hardware.name} vendor={selections.hardware.vendor} url={selections.hardware.url} image={selections.hardware.image} />}
+                                    <SummaryRow label="Processor" value={selections.cpu?.name} vendor={selections.cpu?.vendor} url={selections.cpu?.url} image={selections.cpu?.image} />
+                                    {selections.motherboard && <SummaryRow label="Motherboard" value={selections.motherboard.name} vendor={selections.motherboard.vendor} url={selections.motherboard.url} image={selections.motherboard.image} />}
+                                    {selections.gpu && <SummaryRow label="Graphics" value={selections.gpu.name} vendor={selections.gpu?.vendor} url={selections.gpu?.url} image={selections.gpu?.image} />}
+                                    <SummaryRow label="Memory" value={selections.ram?.size} vendor={selections.ram?.vendor} url={selections.ram?.url} image={selections.ram?.image} />
+                                    <SummaryRow label="Storage" value={selections.storage?.size} vendor={selections.storage?.vendor} url={selections.storage?.url} image={selections.storage?.image} />
+                                    {selections.cooling && <SummaryRow label="Cooling" value={selections.cooling.name} vendor={selections.cooling.vendor} url={selections.cooling.url} image={selections.cooling.image} />}
+                                    {selections.case && <SummaryRow label="Chassis" value={selections.case.name} vendor={selections.case.vendor} url={selections.case.url} image={selections.case.image} />}
+                                    {selections.psu && <SummaryRow label="Power Supply" value={selections.psu.name} vendor={selections.psu.vendor} url={selections.psu.url} image={selections.psu.image} />}
+                                    {selections.charger && <SummaryRow label="Adapter" value={selections.charger.name} vendor={selections.charger.vendor} url={selections.charger.url} image={selections.charger.image} />}
+                                    {selections.monitor && <SummaryRow label="Display" value={selections.monitor.name} vendor={selections.monitor.vendor} url={selections.monitor.url} image={selections.monitor.image} />}
+                                    {selections.keyboard && <SummaryRow label="Keyboard" value={selections.keyboard.name} vendor={selections.keyboard.vendor} url={selections.keyboard.url} image={selections.keyboard.image} />}
+                                    {selections.mouse && <SummaryRow label="Mouse" value={selections.mouse.name} vendor={selections.mouse.vendor} url={selections.mouse.url} image={selections.mouse.image} />}
+                                    {selections.headset && <SummaryRow label="Headset" value={selections.headset.name} vendor={selections.headset.vendor} url={selections.headset.url} image={selections.headset.image} />}
                                     
                                     {!isMac && (
                                         <div className="pt-4 mt-4 border-t border-white/10 space-y-2">

@@ -10,20 +10,24 @@ There are two major parts of this app
 
   You can then search for those components in your Local store.
 
-  ### Build your own PC (Still in development)
+  ### Build your own PC (Manual Configurator)
 
-  This one allows you to spec your very own PC with the parts that you want. It includes a price component to help keep track of your budget while choosing you parts. 
+  Allows you to spec your very own PC with the parts that you want. It includes a price component and compatibility checks (Power, Clearance).
+
+  #### Key Features 2026:
+  * **Multi-Retailer Support**: Compare selections from **ShufflePCs**, **ESGaming.co.ke**, **Amazon**, **eBay**, and **AliExpress**.
+  * **Visual Selection**: High-quality component tiles and images for better visualization of your build.
+  * **Cutting-Edge Hardware**: Support for Apple M5, Intel Panther Lake, and Arc Battlemage GPUs.
+  * **Marketplace Integration**: Includes refurbished and used parts from eBay and high-value deals from AliExpress.
+  * **Regional Optimization**: Targeted at Kenyan users with local store options like ES Gaming.
 
   #### Parts to choose 
-  * CPU: AMD, Intel, SnapDragon
-  * GPU: AMD, Intel,Nvidia, integrated
-  * RAM: DDR4, DDR5 (Dependent on the CPU you choose ( in Amd processors, AM4 CPUs are not compatible with DDR5 RAM, and viceversa)) Capacity (16,32,64,128 GB)
-  * Storage: SATA, NVME M.2, NVME PCIe SSDs .. Capacity (256,512,1TB, 2TB, 4TB, 8TB)
-  * Motherboard: Depends on the chipset of the CPU, size of case, type of ram, type of SSD(Sata SSD have 2 notches, while m.2 has only one).. comes in various * sizes (MicroATX, mini ITX, ATX, EATX)
-  * Cooling: Choose between Aircooled and Liquid cooled CPU(AIO or Custom Cooling)
-  * OS: MacOS, Windows, Linux( Arch, Debian, Ubuntu, Bazzite, SteamOS, ZorinOS, Fedoralinux)
-  * Case: Depends on the size of the motherboard
-  * Peripherals: Monitor, Keyboard, Mouse .
+  * CPU: Apple M5, Intel Panther Lake, AMD Ryzen 9000
+  * GPU: NVIDIA RTX 50-Series, AMD RDNA 4, Intel Battlemage
+  * RAM: DDR5 up to 8000MHz+
+  * Storage: Gen5 NVMe SSDs
+  * OS: MacOS Sequoia, Windows 11, Linux (Fedora 44, Ubuntu 24.04)
+  * Peripherals: Next-gen OLED monitors and high-polling rate mice.
 
 # Usage
 To use this app:

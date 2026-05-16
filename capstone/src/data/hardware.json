@@ -1,146 +1,128 @@
 {
   "os": [
-    { "name": "MacOS Sequoia", "price": 0 },
-    { "name": "Windows 11 Home", "price": 139 },
-    { "name": "Windows 11 Pro", "price": 199 },
-    { "name": "Ubuntu 24.04 LTS", "price": 0 },
-    { "name": "Fedora Workstation 44", "price": 0 },
-    { "name": "Arch Linux", "price": 0 },
-    { "name": "Linux Mint 23", "price": 0 },
-    { "name": "Debian 13", "price": 0 }
+    { "name": "MacOS Sequoia", "price": 0, "vendor": "Apple", "url": "https://apple.com", "image": "https://images.unsplash.com/photo-1611186871348-b1ec696e523f?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Windows 11 Home", "price": 139, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1624555130581-1d9cca783bc0?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Windows 11 Pro", "price": 199, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Ubuntu 24.04 LTS", "price": 0, "vendor": "Canonical", "url": "https://ubuntu.com", "image": "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Fedora Workstation 44", "price": 0, "vendor": "Fedora Project", "url": "https://getfedora.org", "image": "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Arch Linux", "price": 0, "vendor": "Arch", "url": "https://archlinux.org", "image": "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Linux Mint 23", "price": 0, "vendor": "Linux Mint", "url": "https://linuxmint.com", "image": "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Debian 13", "price": 0, "vendor": "Debian", "url": "https://debian.org", "image": "https://images.unsplash.com/photo-1624314138470-5a2f24623f10?q=80&w=400&auto=format&fit=crop" }
   ],
   "mac_hardware": {
     "MacBook Air": [
-      { "name": "MacBook Air 13\" (M5, 10-Core CPU, 8-Core GPU)", "price": 1099 },
-      { "name": "MacBook Air 13\" (M5, 10-Core CPU, 10-Core GPU)", "price": 1199 },
-      { "name": "MacBook Air 15\" (M5, 10-Core CPU, 10-Core GPU)", "price": 1299 }
+      { "name": "MacBook Air 13\" (M5, 16GB, 512GB)", "price": 1099, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1611186871348-b1ec696e523f?q=80&w=400&auto=format&fit=crop" },
+      { "name": "MacBook Air 15\" (M5, 16GB, 512GB)", "price": 1299, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=400&auto=format&fit=crop" }
     ],
     "MacBook Pro": [
-      { "name": "MacBook Pro 14\" (M5, 10-Core CPU, 10-Core GPU)", "price": 1599 },
-      { "name": "MacBook Pro 14\" (M5 Pro, 18-Core CPU, 20-Core GPU)", "price": 1999 },
-      { "name": "MacBook Pro 14\" (M5 Max, 18-Core CPU, 40-Core GPU)", "price": 3199 },
-      { "name": "MacBook Pro 16\" (M5 Pro, 18-Core CPU, 20-Core GPU)", "price": 2499 },
-      { "name": "MacBook Pro 16\" (M5 Max, 18-Core CPU, 40-Core GPU)", "price": 3499 }
+      { "name": "MacBook Pro 14\" (M5 Pro, 24GB, 1TB)", "price": 1999, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=400&auto=format&fit=crop" },
+      { "name": "MacBook Pro 16\" (M5 Max, 32GB, 1TB)", "price": 3499, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=400&auto=format&fit=crop" }
     ],
     "Mac mini": [
-      { "name": "Mac mini (M4, 10-Core CPU, 10-Core GPU)", "price": 599 },
-      { "name": "Mac mini (M4 Pro, 12-Core CPU, 16-Core GPU)", "price": 1399 }
+      { "name": "Mac mini (M4, 16GB, 256GB)", "price": 599, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=400&auto=format&fit=crop" },
+      { "name": "Mac mini (M4 Pro, 24GB, 512GB)", "price": 1399, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=400&auto=format&fit=crop" }
     ],
     "Mac Studio": [
-      { "name": "Mac Studio (M4 Max, 14-Core CPU, 32-Core GPU)", "price": 1999 },
-      { "name": "Mac Studio (M4 Ultra, 28-Core CPU, 64-Core GPU)", "price": 3999 }
+      { "name": "Mac Studio (M4 Max, 32GB, 512GB)", "price": 1999, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=400&auto=format&fit=crop" },
+      { "name": "Mac Studio (M4 Ultra, 64GB, 1TB)", "price": 3999, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=400&auto=format&fit=crop" }
     ],
     "iMac": [
-      { "name": "iMac 24\" (M4, 10-Core CPU, 10-Core GPU)", "price": 1299 }
+      { "name": "iMac 24\" (M4, 16GB, 256GB)", "price": 1299, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=400&auto=format&fit=crop" }
     ]
   },
   "CPU": {
     "Apple Silicon": [
-      { "name": "M5", "price": 0, "tdp": 20 },
-      { "name": "M5 Pro", "price": 400, "tdp": 40 },
-      { "name": "M5 Max", "price": 800, "tdp": 75 },
-      { "name": "M4 Ultra", "price": 1500, "tdp": 120 }
+      { "name": "M5 (Base)", "price": 0, "tdp": 20, "vendor": "Apple", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" },
+      { "name": "M5 Pro", "price": 400, "tdp": 40, "vendor": "Apple", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" },
+      { "name": "M5 Max", "price": 800, "tdp": 75, "vendor": "Apple", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" },
+      { "name": "M4 Ultra", "price": 1500, "tdp": 120, "vendor": "Apple", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" }
     ],
     "Intel": [
-      { "name": "Core Ultra X9 388H (Panther Lake)", "price": 649, "socket": "FCBGA2114", "ramType": "DDR5", "tdp": 45 },
-      { "name": "Core Ultra X7 368H (Panther Lake)", "price": 449, "socket": "FCBGA2114", "ramType": "DDR5", "tdp": 45 },
-      { "name": "Core Ultra 9 285K (Arrow Lake)", "price": 589, "socket": "LGA1851", "ramType": "DDR5", "tdp": 125 },
-      { "name": "Core Ultra 7 265K (Arrow Lake)", "price": 394, "socket": "LGA1851", "ramType": "DDR5", "tdp": 125 },
-      { "name": "Core Ultra 5 245K (Arrow Lake)", "price": 309, "socket": "LGA1851", "ramType": "DDR5", "tdp": 125 }
+      { "name": "Core Ultra X9 388H (Panther Lake)", "price": 649, "socket": "FCBGA2114", "ramType": "DDR5", "tdp": 45, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" },
+      { "name": "Core Ultra X7 368H (Panther Lake)", "price": 449, "socket": "FCBGA2114", "ramType": "DDR5", "tdp": 45, "vendor": "AliExpress", "url": "https://aliexpress.com", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" },
+      { "name": "Core i9-14900K (Refurbished)", "price": 399, "socket": "LGA1700", "ramType": "DDR5", "tdp": 125, "vendor": "eBay", "url": "https://ebay.com", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" },
+      { "name": "Core i7-14700K", "price": 409, "socket": "LGA1700", "ramType": "DDR5", "tdp": 125, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" },
+      { "name": "Core i9-14900K", "price": 549, "socket": "LGA1700", "ramType": "DDR5", "tdp": 125, "vendor": "ShufflePCs", "url": "https://shufflepcs.co.ke", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" }
     ],
     "AMD": [
-      { "name": "Ryzen 9 9950X", "price": 649, "socket": "AM5", "ramType": "DDR5", "tdp": 170 },
-      { "name": "Ryzen 9 9900X", "price": 499, "socket": "AM5", "ramType": "DDR5", "tdp": 120 },
-      { "name": "Ryzen 7 9800X3D", "price": 479, "socket": "AM5", "ramType": "DDR5", "tdp": 120 },
-      { "name": "Ryzen 7 9700X", "price": 359, "socket": "AM5", "ramType": "DDR5", "tdp": 65 },
-      { "name": "Ryzen 5 9600X", "price": 279, "socket": "AM5", "ramType": "DDR5", "tdp": 65 }
+      { "name": "Ryzen 9 9950X", "price": 649, "socket": "AM5", "ramType": "DDR5", "tdp": 170, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" },
+      { "name": "Ryzen 9 9900X", "price": 499, "socket": "AM5", "ramType": "DDR5", "tdp": 120, "vendor": "ShufflePCs", "url": "https://shufflepcs.co.ke", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" },
+      { "name": "Ryzen 7 9800X3D", "price": 479, "socket": "AM5", "ramType": "DDR5", "tdp": 120, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" },
+      { "name": "Ryzen 7 7800X3D (Used)", "price": 280, "socket": "AM5", "ramType": "DDR5", "tdp": 120, "vendor": "eBay", "url": "https://ebay.com", "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop" }
     ]
   },
   "Motherboard": [
-    { "name": "ASUS ROG Maximus Z890 Hero", "price": 699, "socket": "LGA1851", "ramType": "DDR5", "size": "ATX", "tdp": 50 },
-    { "name": "MSI MPG Z890 Carbon WiFi", "price": 499, "socket": "LGA1851", "ramType": "DDR5", "size": "ATX", "tdp": 45 },
-    { "name": "Gigabyte Z890 AORUS Master", "price": 549, "socket": "LGA1851", "ramType": "DDR5", "size": "ATX", "tdp": 45 },
-    { "name": "ASRock Z890 Taichi", "price": 599, "socket": "LGA1851", "ramType": "DDR5", "size": "ATX", "tdp": 45 },
-    { "name": "ASUS ROG Crosshair X870E Hero", "price": 699, "socket": "AM5", "ramType": "DDR5", "size": "ATX", "tdp": 50 },
-    { "name": "MSI MPG X870E Carbon WiFi", "price": 499, "socket": "AM5", "ramType": "DDR5", "size": "ATX", "tdp": 45 },
-    { "name": "Gigabyte X870E AORUS Master", "price": 499, "socket": "AM5", "ramType": "DDR5", "size": "ATX", "tdp": 45 },
-    { "name": "ASRock X870E Taichi", "price": 549, "socket": "AM5", "ramType": "DDR5", "size": "ATX", "tdp": 45 },
-    { "name": "Mobile Panther Lake Platform", "price": 0, "socket": "FCBGA2114", "ramType": "DDR5", "size": "ITX", "tdp": 0 }
+    { "name": "ASUS ROG Maximus Z890 Hero", "price": 699, "socket": "LGA1851", "ramType": "DDR5", "size": "ATX", "tdp": 50, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400&auto=format&fit=crop" },
+    { "name": "MSI MPG Z890 Carbon WiFi", "price": 499, "socket": "LGA1851", "ramType": "DDR5", "size": "ATX", "tdp": 45, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Lian Li Vision O11 Case", "price": 189, "socket": "AM5", "ramType": "DDR5", "size": "ATX", "tdp": 0, "vendor": "ShufflePCs", "url": "https://shufflepcs.co.ke", "image": "https://images.unsplash.com/photo-1587202395166-439ca08536df?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Gigabyte B650M (Refurbished)", "price": 85, "socket": "AM5", "ramType": "DDR5", "size": "Micro-ATX", "tdp": 30, "vendor": "eBay", "url": "https://ebay.com", "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400&auto=format&fit=crop" },
+    { "name": "MaxSun B760M Terminal", "price": 95, "socket": "LGA1700", "ramType": "DDR5", "size": "Micro-ATX", "tdp": 35, "vendor": "AliExpress", "url": "https://aliexpress.com", "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400&auto=format&fit=crop" }
   ],
   "GPU": {
     "NVIDIA": [
-      { "name": "RTX 5090 (Blackwell)", "price": 1799, "tdp": 500, "length": 320 },
-      { "name": "RTX 5080 (Blackwell)", "price": 1199, "tdp": 350, "length": 315 },
-      { "name": "RTX 4090 Founders Edition", "price": 1599, "tdp": 450, "length": 304 },
-      { "name": "RTX 4080 Super", "price": 999, "tdp": 320, "length": 310 }
+      { "name": "RTX 5090 Founders Edition", "price": 1799, "tdp": 500, "length": 320, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=400&auto=format&fit=crop" },
+      { "name": "RTX 5080 (Blackwell)", "price": 1199, "tdp": 350, "length": 315, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=400&auto=format&fit=crop" },
+      { "name": "RTX 5070 Ti (Premium)", "price": 799, "tdp": 285, "length": 285, "vendor": "ShufflePCs", "url": "https://shufflepcs.co.ke", "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=400&auto=format&fit=crop" },
+      { "name": "RTX 4090 (Used)", "price": 1250, "tdp": 450, "length": 304, "vendor": "eBay", "url": "https://ebay.com", "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=400&auto=format&fit=crop" }
     ],
     "AMD": [
-      { "name": "RX 8900 XTX (RDNA 4)", "price": 999, "tdp": 350, "length": 290 },
-      { "name": "RX 8800 XT (RDNA 4)", "price": 649, "tdp": 280, "length": 280 },
-      { "name": "RX 7900 XTX", "price": 949, "tdp": 355, "length": 287 }
+      { "name": "RX 8900 XTX (RDNA 4)", "price": 999, "tdp": 350, "length": 290, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=400&auto=format&fit=crop" },
+      { "name": "RX 9070 (16GB)", "price": 549, "tdp": 220, "length": 267, "vendor": "ShufflePCs", "url": "https://shufflepcs.co.ke", "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=400&auto=format&fit=crop" },
+      { "name": "RX 7900 XTX", "price": 849, "tdp": 355, "length": 287, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=400&auto=format&fit=crop" }
     ],
     "Intel": [
-      { "name": "Arc B880 (Battlemage)", "price": 449, "tdp": 225, "length": 280 },
-      { "name": "Arc B580 (Battlemage)", "price": 249, "tdp": 190, "length": 240 },
-      { "name": "Arc A770 (16GB)", "price": 299, "tdp": 225, "length": 267 }
+      { "name": "Arc B880 (Battlemage)", "price": 449, "tdp": 225, "length": 280, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=400&auto=format&fit=crop" },
+      { "name": "Arc B580 (Battlemage)", "price": 249, "tdp": 190, "length": 240, "vendor": "AliExpress", "url": "https://aliexpress.com", "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=400&auto=format&fit=crop" }
     ]
   },
   "ram": {
     "mac": [
-      { "size": "16GB Unified", "price": 0 },
-      { "size": "32GB Unified", "price": 400 },
-      { "size": "64GB Unified", "price": 800 },
-      { "size": "128GB Unified", "price": 1600 }
+      { "size": "16GB Unified", "price": 0, "vendor": "Apple", "image": "https://images.unsplash.com/photo-1562976540-1502c2145186?q=80&w=400&auto=format&fit=crop" },
+      { "size": "32GB Unified", "price": 400, "vendor": "Apple", "image": "https://images.unsplash.com/photo-1562976540-1502c2145186?q=80&w=400&auto=format&fit=crop" }
     ],
     "pc": [
-      { "size": "32GB (2x16GB) DDR5-6000", "price": 110, "ramType": "DDR5", "tdp": 10 },
-      { "size": "64GB (2x32GB) DDR5-6400", "price": 220, "ramType": "DDR5", "tdp": 15 },
-      { "size": "48GB (2x24GB) DDR5-7200", "price": 180, "ramType": "DDR5", "tdp": 12 },
-      { "size": "32GB (2x16GB) DDR5-8000", "price": 250, "ramType": "DDR5", "tdp": 15 },
-      { "size": "96GB (2x48GB) DDR5-6400", "price": 350, "ramType": "DDR5", "tdp": 20 }
+      { "size": "32GB (2x16GB) DDR5-6000", "price": 110, "ramType": "DDR5", "tdp": 10, "vendor": "ShufflePCs", "url": "https://shufflepcs.co.ke", "image": "https://images.unsplash.com/photo-1562976540-1502c2145186?q=80&w=400&auto=format&fit=crop" },
+      { "size": "32GB Kingsbank DDR5-6400", "price": 85, "ramType": "DDR5", "tdp": 12, "vendor": "AliExpress", "url": "https://aliexpress.com", "image": "https://images.unsplash.com/photo-1562976540-1502c2145186?q=80&w=400&auto=format&fit=crop" },
+      { "size": "64GB (2x32GB) DDR5-6000", "price": 190, "ramType": "DDR5", "tdp": 15, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1562976540-1502c2145186?q=80&w=400&auto=format&fit=crop" }
     ]
   },
   "Cooling": [
-    { "name": "Noctua NH-D15 G2", "price": 149, "type": "Air", "tdp": 10, "height": 168 },
-    { "name": "Arctic Liquid Freezer III 360", "price": 115, "type": "Liquid", "tdp": 20, "height": 65 },
-    { "name": "NZXT Kraken Elite 360", "price": 279, "type": "Liquid", "tdp": 25, "height": 55 }
+    { "name": "DeepCool Mystique 360 AIO", "price": 185, "type": "Liquid", "tdp": 25, "height": 55, "vendor": "ShufflePCs", "url": "https://shufflepcs.co.ke", "image": "https://images.unsplash.com/photo-1587202395166-439ca08536df?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Snowman MT6 Air Cooler", "price": 25, "type": "Air", "tdp": 5, "height": 155, "vendor": "AliExpress", "url": "https://aliexpress.com", "image": "https://images.unsplash.com/photo-1587202395166-439ca08536df?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Arctic Liquid Freezer III 360", "price": 115, "type": "Liquid", "tdp": 20, "height": 65, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1587202395166-439ca08536df?q=80&w=400&auto=format&fit=crop" }
   ],
   "Storage": [
-    { "size": "2TB Samsung 990 Pro (Gen4)", "price": 170, "tdp": 7 },
-    { "size": "4TB Samsung 990 Pro (Gen4)", "price": 330, "tdp": 8 },
-    { "size": "2TB Crucial T705 (Gen5)", "price": 280, "tdp": 12 },
-    { "size": "4TB Crucial T705 (Gen5)", "price": 520, "tdp": 14 }
+    { "size": "2TB Samsung 990 Pro", "price": 170, "tdp": 7, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1597872200370-493dea239322?q=80&w=400&auto=format&fit=crop" },
+    { "size": "2TB Fanxiang S880 (Gen5)", "price": 140, "tdp": 10, "vendor": "AliExpress", "url": "https://aliexpress.com", "image": "https://images.unsplash.com/photo-1597872200370-493dea239322?q=80&w=400&auto=format&fit=crop" },
+    { "size": "4TB WD Black SN850X", "price": 300, "tdp": 8, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1597872200370-493dea239322?q=80&w=400&auto=format&fit=crop" }
   ],
   "Case": [
-    { "name": "Lian Li O11 Dynamic EVO RGB", "price": 169, "size": "ATX", "gpuClearance": 455, "cpuClearance": 167 },
-    { "name": "NZXT H9 Flow", "price": 159, "size": "ATX", "gpuClearance": 435, "cpuClearance": 165 },
-    { "name": "Fractal Design North", "price": 139, "size": "ATX", "gpuClearance": 355, "cpuClearance": 170 }
+    { "name": "Lian Li Vision O11", "price": 189, "size": "ATX", "gpuClearance": 455, "cpuClearance": 167, "vendor": "ShufflePCs", "url": "https://shufflepcs.co.ke", "image": "https://images.unsplash.com/photo-1587202395166-439ca08536df?q=80&w=400&auto=format&fit=crop" },
+    { "name": "NZXT H9 Flow", "price": 159, "size": "ATX", "gpuClearance": 435, "cpuClearance": 165, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1587202395166-439ca08536df?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Fractal Design North", "price": 139, "size": "ATX", "gpuClearance": 355, "cpuClearance": 170, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1587202395166-439ca08536df?q=80&w=400&auto=format&fit=crop" }
   ],
   "PSU": [
-    { "name": "Corsair RM850x (2024)", "price": 149, "wattage": 850 },
-    { "name": "Corsair RM1000x (2024)", "price": 189, "wattage": 1000 },
-    { "name": "Seasonic Prime TX-1300", "price": 449, "wattage": 1300 }
+    { "name": "Corsair RM850x (2024)", "price": 149, "wattage": 850, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1587202395166-439ca08536df?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Seasonic Prime TX-1300", "price": 449, "wattage": 1300, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1587202395166-439ca08536df?q=80&w=400&auto=format&fit=crop" }
   ],
   "chargers": [
-    { "name": "70W USB-C", "price": 20 },
-    { "name": "96W USB-C", "price": 40 },
-    { "name": "140W USB-C", "price": 99 },
-    { "name": "240W MagSafe 3", "price": 129 }
+    { "name": "140W USB-C", "price": 99, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1587202395166-439ca08536df?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Generic 100W GaN Charger", "price": 35, "vendor": "AliExpress", "url": "https://aliexpress.com", "image": "https://images.unsplash.com/photo-1587202395166-439ca08536df?q=80&w=400&auto=format&fit=crop" }
   ],
   "Monitors": [
-    { "name": "LG UltraGear 32GS95UE OLED", "price": 1399, "resolution": "3840x2160", "refreshRate": "240Hz/480Hz", "panelType": "OLED" },
-    { "name": "Samsung Odyssey Neo G9 G95NC 57\"", "price": 2299, "resolution": "7680x2160", "refreshRate": "240Hz", "panelType": "Mini-LED" }
+    { "name": "ASUS TUF 27\" 1440p 210Hz", "price": 445, "resolution": "2560x1440", "refreshRate": "210Hz", "panelType": "IPS", "vendor": "ShufflePCs", "url": "https://shufflepcs.co.ke", "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=400&auto=format&fit=crop" },
+    { "name": "LG UltraGear 32GS95UE OLED", "price": 1399, "resolution": "3840x2160", "refreshRate": "240Hz", "panelType": "OLED", "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=400&auto=format&fit=crop" }
   ],
   "Keyboards": [
-    { "name": "Logitech G Pro X 60 Lightspeed", "price": 179, "switchType": "Optical", "formFactor": "60%" },
-    { "name": "Razer Huntsman V3 Pro TKL", "price": 219, "switchType": "Analog Optical", "formFactor": "TKL" }
+    { "name": "Keychron Q1 HE", "price": 219, "switchType": "Magnetic", "formFactor": "75%", "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Aula F75 Mechanical", "price": 55, "switchType": "Linear", "formFactor": "75%", "vendor": "AliExpress", "url": "https://aliexpress.com", "image": "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=400&auto=format&fit=crop" }
   ],
   "Mice": [
-    { "name": "Logitech G Pro X Superlight 2 DEX", "price": 159, "sensor": "HERO 2", "weight": "60g" },
-    { "name": "Razer DeathAdder V3 Pro", "price": 149, "sensor": "Focus Pro 30K", "weight": "63g" }
+    { "name": "Logitech G Pro X Superlight 2", "price": 159, "sensor": "HERO 2", "weight": "60g", "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Attack Shark X3", "price": 35, "sensor": "PAW3395", "weight": "49g", "vendor": "AliExpress", "url": "https://aliexpress.com", "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?q=80&w=400&auto=format&fit=crop" }
   ],
   "Headsets": [
-    { "name": "SteelSeries Arctis Nova Pro Wireless", "price": 349, "type": "Over-Ear", "wireless": true },
-    { "name": "Sony WH-1000XM5", "price": 399, "type": "Over-Ear", "wireless": true }
+    { "name": "SteelSeries Arctis Nova Pro", "price": 349, "type": "Over-Ear", "wireless": true, "vendor": "Amazon", "url": "https://amazon.com", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=400&auto=format&fit=crop" },
+    { "name": "Sony WH-1000XM5", "price": 399, "type": "Over-Ear", "wireless": true, "vendor": "ESGaming", "url": "https://esgaming.co.ke", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=400&auto=format&fit=crop" }
   ]
 }
