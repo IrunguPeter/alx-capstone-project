@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useRef, useState } from 'react';
+import { useReducer, useEffect, useRef, useState, Fragment } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -164,20 +164,20 @@ function reducer(state, action) {
 
 function SummaryRow({ label, value, vendor, url, image }) {
     return (
-        <div className="flex justify-between items-center py-3 border-b border-white/5 last:border-0 group">
+        <div className="flex justify-between items-center py-3 border-b border-ivory/10 last:border-0 group">
             <div className="flex items-center gap-4 text-left">
-                <div className="w-12 h-12 rounded-xl bg-white/5 overflow-hidden border border-white/10 group-hover:border-indigo-500/50 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-white/5 overflow-hidden border border-ivory/10 group-hover:border-gold/40 transition-colors">
                     <img 
                         src={image || "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=100&auto=format&fit=crop"} 
                         alt={label}
-                        className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity"
+                        className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
                     />
                 </div>
                 <div className="flex flex-col">
-                    <span className="text-white/40 font-black uppercase tracking-[0.2em] text-[10px]">{label}</span>
-                    <span className="text-white font-bold text-sm leading-tight">{value}</span>
+                    <span className="font-mono text-[9px] font-medium text-ivory/40 uppercase tracking-[0.2em]">{label}</span>
+                    <span className="font-display font-medium text-sm text-ivory leading-tight">{value}</span>
                     {vendor && (
-                        <span className="text-[9px] font-black uppercase tracking-widest text-indigo-400 mt-1">
+                        <span className="font-mono text-[8px] font-medium uppercase tracking-widest text-gold mt-1">
                             Source: {vendor}
                         </span>
                     )}
@@ -188,7 +188,7 @@ function SummaryRow({ label, value, vendor, url, image }) {
                     href={url} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-[10px] bg-white/5 hover:bg-white/10 text-white/60 hover:text-white px-3 py-1 rounded-lg border border-white/10 transition-all font-black uppercase tracking-widest"
+                    className="font-mono text-[9px] bg-white/5 hover:bg-white/10 text-ivory/60 hover:text-ivory px-3 py-1 rounded-full border border-ivory/10 transition-all font-medium uppercase tracking-widest"
                 >
                     Link
                 </a>
@@ -197,39 +197,27 @@ function SummaryRow({ label, value, vendor, url, image }) {
     );
 }
 
-function HardwareTile({ item, onClick, icon: Icon, subtext }) {
+function HardwareTile({ item, onClick, subtext }) {
     return (
         <button 
             onClick={onClick}
-            className="group relative bg-white border-2 border-slate-50 rounded-[2rem] overflow-hidden hover:border-indigo-600 hover:shadow-2xl transition-all text-left flex flex-col h-full"
+            className="group flex flex-col h-full bg-white rounded-2xl border border-ink/5 overflow-hidden text-left transition-all duration-500 hover:border-ink/15 hover:shadow-luxury-card hover:-translate-y-0.5"
         >
-            <div className="aspect-video w-full relative overflow-hidden bg-slate-100">
+            <div className="aspect-video w-full overflow-hidden bg-[#f0ece2]">
                 <img 
                     src={item.image || "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=400&auto=format&fit=crop"} 
                     alt={item.name} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                    className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 opacity-95 group-hover:opacity-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
-                {item.vendor && (
-                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-white shadow-sm">
-                        <span className="text-[8px] font-black uppercase tracking-widest text-indigo-600">{item.vendor}</span>
-                    </div>
-                )}
-                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
-                    <div className="bg-indigo-600 text-white p-2 rounded-xl shadow-lg">
-                        <Icon size={16} />
-                    </div>
-                    <span className="text-white font-mono font-black text-lg drop-shadow-lg">${item.price}</span>
-                </div>
             </div>
-            <div className="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                    <h3 className="font-black text-slate-900 leading-tight mb-1 group-hover:text-indigo-600 transition-colors">{item.name || item.size}</h3>
-                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">{subtext}</p>
-                </div>
-                <div className="mt-4 flex items-center gap-2 text-indigo-600 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">
-                    <span className="text-[10px] font-black uppercase tracking-widest">Select Component</span>
-                    <ChevronLeft size={12} className="rotate-180" />
+            <div className="p-6 flex flex-col flex-1">
+                <span className="font-mono text-[9px] font-medium uppercase tracking-[0.25em] text-ink/40">{subtext}</span>
+                <h3 className="mt-2 font-display font-medium text-lg leading-snug text-ink">{item.name || item.size}</h3>
+                <div className="mt-auto pt-6 flex items-center justify-between">
+                    <span className="font-display font-medium text-xl text-ink">${item.price}</span>
+                    <span className="font-mono text-[9px] font-medium uppercase tracking-[0.2em] text-burgundy opacity-0 group-hover:opacity-100 transition-opacity">
+                        Select →
+                    </span>
                 </div>
             </div>
         </button>
@@ -281,34 +269,27 @@ function Build() {
             aria-label="PC Build Wizard"
         >
             {currentStep > 0 && currentStep !== 9 && (
-                <div className="mb-12 hidden md:flex justify-between items-center px-4 relative overflow-x-auto pb-8 custom-scrollbar">
-                    <div className="absolute top-5 left-0 w-full h-0.5 bg-slate-100 -translate-y-1/2 z-0" />
+                <div className="mb-12 hidden md:flex items-center justify-center px-4 overflow-x-auto pb-2 custom-scrollbar">
                     {STEPS.filter(s => {
                         if (isMac) {
                            return [1, 2, 4, 6, 7, 8, 14, 15, 16, 17].includes(s.id);
                         } else {
                            return [1, 4, 10, 5, 6, 7, 11, 12, 13, 14, 15, 16, 17].includes(s.id);
                         }
-                    }).map((step) => {
-                        const Icon = step.icon;
+                    }).map((step, idx) => {
                         const isCompleted = currentStep > step.id || (currentStep === 3 && step.id === 2);
                         const isActive = currentStep === step.id || (currentStep === 3 && step.id === 4);
                         
                         return (
-                            <div key={step.id} className="relative z-10 flex flex-col items-center px-4">
-                                <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
-                                    isCompleted ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-200' :
-                                    isActive ? 'bg-indigo-600 text-white scale-110 shadow-xl shadow-indigo-200' :
-                                    'bg-white border-2 border-slate-100 text-slate-300'
-                                }`}>
-                                    {isCompleted ? <CheckCircle2 size={18} /> : <Icon size={18} />}
-                                </div>
-                                <span className={`absolute -bottom-2 text-[8px] font-black uppercase tracking-widest whitespace-nowrap ${
-                                    isActive ? 'text-indigo-600' : 'text-slate-400'
+                            <Fragment key={step.id}>
+                                {idx > 0 && <span className="h-px w-8 bg-ink/15 mx-4" />}
+                                <span className={`font-mono text-[10px] uppercase tracking-[0.25em] whitespace-nowrap transition-colors ${
+                                    isActive ? 'text-burgundy' :
+                                    isCompleted ? 'text-ink' : 'text-ink/30'
                                 }`}>
                                     {step.name}
                                 </span>
-                            </div>
+                            </Fragment>
                         );
                     })}
                 </div>
@@ -325,14 +306,14 @@ function Build() {
                             exit="exit"
                             className="py-10"
                         >
-                            <div className="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-3xl flex items-center justify-center mx-auto mb-8">
-                                <Cpu size={40} />
+                            <div className="w-20 h-20 bg-burgundy/5 text-burgundy rounded-full flex items-center justify-center mx-auto mb-8 border border-burgundy/10">
+                                <Cpu size={36} />
                             </div>
-                            <h3 className="text-4xl font-black text-slate-900 mb-4 tracking-tight">Precision Configurator</h3>
-                            <p className="text-slate-500 mb-10 text-lg font-medium max-w-md mx-auto">Select each component with surgical precision for your next high-performance machine.</p>
+                            <h3 className="font-display font-medium text-4xl text-ink mb-4">Precision Configurator</h3>
+                            <p className="text-ink-soft mb-10 text-lg font-light max-w-md mx-auto">Select each component with care for your next high-performance machine.</p>
                             <button 
                                 onClick={() => dispatch({ type: 'SET_STEP', payload: 1 })}
-                                className="bg-indigo-600 text-white px-12 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-all focus:ring-4 focus:ring-indigo-100 glow-btn shadow-lg shadow-indigo-200"
+                                className="bg-burgundy text-white px-12 py-4 rounded-full font-medium text-lg hover:bg-burgundy-deep transition-all focus:ring-4 focus:ring-burgundy/20"
                             >
                                 Launch Wizard
                             </button>
@@ -347,7 +328,7 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-8">Choose your Ecosystem</h2>
+                            <h2 className="font-display font-medium text-3xl text-ink mb-8">Choose your Ecosystem</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                                 {hardwareData.os.map((item) => (
                                     <HardwareTile 
@@ -370,13 +351,13 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-8">Select Base Platform</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100 custom-scrollbar">
+                            <h2 className="font-display font-medium text-3xl text-ink mb-8">Select Base Platform</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-paper/70 rounded-[2.5rem] border border-ink/5 custom-scrollbar">
                                 {Object.entries(hardwareData.mac_hardware).map(([category, items]) => (
                                     <div key={category} className="md:col-span-full mb-8 first:mt-0">
-                                        <h3 className="text-left text-[12px] font-black text-indigo-600 uppercase tracking-[0.3em] mb-6 px-4 flex items-center gap-4">
+                                        <h3 className="text-left font-mono text-[10px] font-medium text-ink-soft uppercase tracking-[0.3em] mb-6 px-4 flex items-center gap-4">
                                             {category}
-                                            <div className="h-px flex-1 bg-indigo-100" />
+                                            <div className="h-px flex-1 bg-ink/10" />
                                         </h3>
                                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                             {items.map(item => (
@@ -403,8 +384,8 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-8">Select Processing Core</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
+                            <h2 className="font-display font-medium text-3xl text-ink mb-8">Select Processing Core</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-paper/70 rounded-[2.5rem] border border-ink/5">
                                 {(isMac ? hardwareData.CPU["Apple Silicon"] : [...hardwareData.CPU.Intel, ...hardwareData.CPU.AMD]).map(item => (
                                     <HardwareTile 
                                         key={item.name}
@@ -426,9 +407,9 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-2">Compatible Motherboard</h2>
-                            <p className="text-sm text-slate-500 mb-8 font-medium italic">Filtered for {selections.cpu?.socket} Socket</p>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
+                            <h2 className="font-display font-medium text-3xl text-ink mb-2">Compatible Motherboard</h2>
+                            <p className="text-sm text-ink-soft mb-8 font-medium italic">Filtered for {selections.cpu?.socket} Socket</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-paper/70 rounded-[2.5rem] border border-ink/5">
                                 {hardwareData.Motherboard.filter(mb => mb.socket === selections.cpu?.socket).map(item => (
                                     <HardwareTile 
                                         key={item.name}
@@ -450,9 +431,9 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-2">Graphics Processor</h2>
-                            <p className="text-sm text-slate-500 mb-8 font-medium">Visual throughput and compute density.</p>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
+                            <h2 className="font-display font-medium text-3xl text-ink mb-2">Graphics Processor</h2>
+                            <p className="text-sm text-ink-soft mb-8 font-medium">Visual throughput and compute density.</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-paper/70 rounded-[2.5rem] border border-ink/5">
                                 {[...hardwareData.GPU.NVIDIA, ...hardwareData.GPU.AMD, ...hardwareData.GPU.Intel].map(item => (
                                     <HardwareTile 
                                         key={item.name}
@@ -474,8 +455,8 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-2">Memory Capacity</h2>
-                            {!isMac && <p className="text-sm text-slate-500 mb-8 font-medium italic">Filtered for {selections.motherboard?.ramType || selections.cpu?.ramType}</p>}
+                            <h2 className="font-display font-medium text-3xl text-ink mb-2">Memory Capacity</h2>
+                            {!isMac && <p className="text-sm text-ink-soft mb-8 font-medium italic">Filtered for {selections.motherboard?.ramType || selections.cpu?.ramType}</p>}
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {(isMac ? hardwareData.ram.mac : hardwareData.ram.pc.filter(r => r.ramType === (selections.motherboard?.ramType || selections.cpu?.ramType))).map(item => (
                                     <HardwareTile 
@@ -498,7 +479,7 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-8">High-Speed Storage</h2>
+                            <h2 className="font-display font-medium text-3xl text-ink mb-8">High-Speed Storage</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {hardwareData.Storage.map(item => (
                                     <HardwareTile 
@@ -521,7 +502,7 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-8">Thermal Management</h2>
+                            <h2 className="font-display font-medium text-3xl text-ink mb-8">Thermal Management</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {hardwareData.Cooling.map(item => (
                                     <HardwareTile 
@@ -544,8 +525,8 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-2">Chassis Selection</h2>
-                            <p className="text-sm text-slate-500 mb-8 font-medium italic">Supporting {selections.motherboard?.size} Boards</p>
+                            <h2 className="font-display font-medium text-3xl text-ink mb-2">Chassis Selection</h2>
+                            <p className="text-sm text-ink-soft mb-8 font-medium italic">Supporting {selections.motherboard?.size} Boards</p>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {hardwareData.Case.filter(c => {
                                     if (selections.motherboard?.size === 'ATX') return c.size === 'ATX';
@@ -571,7 +552,7 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-8">Power Supply Unit</h2>
+                            <h2 className="font-display font-medium text-3xl text-ink mb-8">Power Supply Unit</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {hardwareData.PSU.map(item => (
                                     <HardwareTile 
@@ -594,7 +575,7 @@ function Build() {
                             animate="visible"
                             exit="exit"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 mb-8">Select Power Solution</h2>
+                            <h2 className="font-display font-medium text-3xl text-ink mb-8">Select Power Solution</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {hardwareData.chargers.map(item => (
                                     <HardwareTile 
@@ -618,15 +599,15 @@ function Build() {
                             exit="exit"
                         >
                             <div className="flex justify-between items-center mb-8">
-                                <h2 className="text-2xl font-black text-slate-900">Select Visual Display</h2>
+                                <h2 className="font-display font-medium text-3xl text-ink">Select Visual Display</h2>
                                 <button 
                                     onClick={() => handleSelect('monitor', null)}
-                                    className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 transition-colors border border-slate-200 hover:border-indigo-100 px-4 py-2 rounded-xl"
+                                    className="font-mono text-[10px] font-medium uppercase tracking-widest text-ink/40 hover:text-burgundy transition-colors border border-ink/10 hover:border-ink/30 px-4 py-2 rounded-full"
                                 >
                                     Skip this Step
                                 </button>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-paper/70 rounded-[2.5rem] border border-ink/5">
                                 {hardwareData.Monitors.map(item => (
                                     <HardwareTile 
                                         key={item.name}
@@ -649,15 +630,15 @@ function Build() {
                             exit="exit"
                         >
                             <div className="flex justify-between items-center mb-8">
-                                <h2 className="text-2xl font-black text-slate-900">Choose Input Device</h2>
+                                <h2 className="font-display font-medium text-3xl text-ink">Choose Input Device</h2>
                                 <button 
                                     onClick={() => handleSelect('keyboard', null)}
-                                    className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 transition-colors border border-slate-200 hover:border-indigo-100 px-4 py-2 rounded-xl"
+                                    className="font-mono text-[10px] font-medium uppercase tracking-widest text-ink/40 hover:text-burgundy transition-colors border border-ink/10 hover:border-ink/30 px-4 py-2 rounded-full"
                                 >
                                     Skip this Step
                                 </button>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-paper/70 rounded-[2.5rem] border border-ink/5">
                                 {hardwareData.Keyboards.map(item => (
                                     <HardwareTile 
                                         key={item.name}
@@ -680,15 +661,15 @@ function Build() {
                             exit="exit"
                         >
                             <div className="flex justify-between items-center mb-8">
-                                <h2 className="text-2xl font-black text-slate-900">Precision Tracking</h2>
+                                <h2 className="font-display font-medium text-3xl text-ink">Precision Tracking</h2>
                                 <button 
                                     onClick={() => handleSelect('mouse', null)}
-                                    className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 transition-colors border border-slate-200 hover:border-indigo-100 px-4 py-2 rounded-xl"
+                                    className="font-mono text-[10px] font-medium uppercase tracking-widest text-ink/40 hover:text-burgundy transition-colors border border-ink/10 hover:border-ink/30 px-4 py-2 rounded-full"
                                 >
                                     Skip this Step
                                 </button>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-paper/70 rounded-[2.5rem] border border-ink/5">
                                 {hardwareData.Mice.map(item => (
                                     <HardwareTile 
                                         key={item.name}
@@ -711,15 +692,15 @@ function Build() {
                             exit="exit"
                         >
                             <div className="flex justify-between items-center mb-8">
-                                <h2 className="text-2xl font-black text-slate-900">Acoustic Engineering</h2>
+                                <h2 className="font-display font-medium text-3xl text-ink">Acoustic Engineering</h2>
                                 <button 
                                     onClick={() => handleSelect('headset', null)}
-                                    className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 transition-colors border border-slate-200 hover:border-indigo-100 px-4 py-2 rounded-xl"
+                                    className="font-mono text-[10px] font-medium uppercase tracking-widest text-ink/40 hover:text-burgundy transition-colors border border-ink/10 hover:border-ink/30 px-4 py-2 rounded-full"
                                 >
                                     Skip this Step
                                 </button>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-slate-50/50 rounded-[3rem] border border-slate-100">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-6 bg-paper/70 rounded-[2.5rem] border border-ink/5">
                                 {hardwareData.Headsets.map(item => (
                                     <HardwareTile 
                                         key={item.name}
@@ -743,16 +724,13 @@ function Build() {
                             className="py-6" 
                             role="status"
                         >
-                            <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
-                                <CheckCircle2 size={40} />
+                            <div className="w-20 h-20 bg-gold/10 text-gold rounded-full flex items-center justify-center mx-auto mb-8 border border-gold/30">
+                                <CheckCircle2 size={36} />
                             </div>
-                            <h2 className="text-4xl font-black mb-10 text-slate-900 tracking-tight">Configuration Complete.</h2>
+                            <h2 className="font-display font-medium text-4xl mb-10 text-ink tracking-tight">Configuration Complete.</h2>
                             
-                            <div id="manual-build-summary" className="text-left bg-slate-900 text-white p-10 rounded-[2.5rem] mb-10 shadow-2xl relative overflow-hidden">
-                                <div className="absolute top-0 right-0 p-10 opacity-10 pointer-events-none">
-                                    <Cpu size={120} />
-                                </div>
-                                <div className="space-y-1 relative z-10">
+                            <div id="manual-build-summary" className="text-left bg-ink text-ivory p-10 rounded-[2.5rem] mb-10 shadow-luxury-panel">
+                                <div className="space-y-1">
                                     <SummaryRow label="System OS" value={selections.os?.name} vendor={selections.os?.vendor} url={selections.os?.url} image={selections.os?.image} />
                                     {selections.hardware && <SummaryRow label="Base Platform" value={selections.hardware.name} vendor={selections.hardware.vendor} url={selections.hardware.url} image={selections.hardware.image} />}
                                     <SummaryRow label="Processor" value={selections.cpu?.name} vendor={selections.cpu?.vendor} url={selections.cpu?.url} image={selections.cpu?.image} />
@@ -770,15 +748,15 @@ function Build() {
                                     {selections.headset && <SummaryRow label="Headset" value={selections.headset.name} vendor={selections.headset.vendor} url={selections.headset.url} image={selections.headset.image} />}
                                     
                                     {!isMac && (
-                                        <div className="pt-4 mt-4 border-t border-white/10 space-y-2">
+                                        <div className="pt-4 mt-4 border-t border-ivory/10 space-y-2">
                                             <div className="flex justify-between items-center">
-                                                <span className="text-white/40 font-black uppercase tracking-[0.2em] text-[10px]">Power Draw</span>
-                                                <span className="text-white font-bold text-sm">{totalWattage}W</span>
+                                                <span className="font-mono text-[9px] font-medium text-ivory/40 uppercase tracking-[0.2em]">Power Draw</span>
+                                                <span className="text-ivory font-medium text-sm">{totalWattage}W</span>
                                             </div>
                                             {selections.psu && (
                                                 <div className="flex justify-between items-center">
-                                                    <span className="text-white/40 font-black uppercase tracking-[0.2em] text-[10px]">Safety Margin</span>
-                                                    <span className={`font-bold text-sm ${isPowerInsufficient ? 'text-red-400' : 'text-emerald-400'}`}>
+                                                    <span className="font-mono text-[9px] font-medium text-ivory/40 uppercase tracking-[0.2em]">Safety Margin</span>
+                                                    <span className={`font-medium text-sm ${isPowerInsufficient ? 'text-red-300' : 'text-gold'}`}>
                                                         {powerSafetyMargin}W
                                                     </span>
                                                 </div>
@@ -786,15 +764,15 @@ function Build() {
                                             {(isGpuTooLong || isCoolerTooTall) && (
                                                 <div className="pt-2 space-y-2">
                                                     {isGpuTooLong && (
-                                                        <div className="flex justify-between items-center text-red-400">
-                                                            <span className="font-black uppercase tracking-[0.2em] text-[10px]">GPU Clearance</span>
-                                                            <span className="font-bold text-xs">Exceeded</span>
+                                                        <div className="flex justify-between items-center text-red-300">
+                                                            <span className="font-mono text-[9px] font-medium uppercase tracking-[0.2em]">GPU Clearance</span>
+                                                            <span className="font-medium text-xs">Exceeded</span>
                                                         </div>
                                                     )}
                                                     {isCoolerTooTall && (
-                                                        <div className="flex justify-between items-center text-red-400">
-                                                            <span className="font-black uppercase tracking-[0.2em] text-[10px]">Cooler Height</span>
-                                                            <span className="font-bold text-xs">Exceeded</span>
+                                                        <div className="flex justify-between items-center text-red-300">
+                                                            <span className="font-mono text-[9px] font-medium uppercase tracking-[0.2em]">Cooler Height</span>
+                                                            <span className="font-medium text-xs">Exceeded</span>
                                                         </div>
                                                     )}
                                                 </div>
@@ -803,55 +781,55 @@ function Build() {
                                     )}
                                 </div>
                                 {(isPowerInsufficient || isGpuTooLong || isCoolerTooTall) && (
-                                    <div className="mt-6 p-4 bg-red-500/20 border border-red-500/50 rounded-2xl flex flex-col gap-2 animate-pulse">
+                                    <div className="mt-6 p-4 bg-red-500/10 border border-red-500/40 rounded-2xl flex flex-col gap-2 animate-pulse">
                                         {isPowerInsufficient && (
                                             <div className="flex items-center gap-3">
-                                                <AlertCircle className="text-red-400" size={16} />
-                                                <p className="text-red-200 text-[10px] font-black uppercase tracking-wider text-left">Power draw exceeds PSU capacity!</p>
+                                                <AlertCircle className="text-red-300" size={16} />
+                                                <p className="text-red-200 font-mono text-[10px] font-medium uppercase tracking-wider text-left">Power draw exceeds PSU capacity!</p>
                                             </div>
                                         )}
                                         {isGpuTooLong && (
                                             <div className="flex items-center gap-3">
-                                                <AlertCircle className="text-red-400" size={16} />
-                                                <p className="text-red-200 text-[10px] font-black uppercase tracking-wider text-left">GPU is too long for this case!</p>
+                                                <AlertCircle className="text-red-300" size={16} />
+                                                <p className="text-red-200 font-mono text-[10px] font-medium uppercase tracking-wider text-left">GPU is too long for this case!</p>
                                             </div>
                                         )}
                                         {isCoolerTooTall && (
                                             <div className="flex items-center gap-3">
-                                                <AlertCircle className="text-red-400" size={16} />
-                                                <p className="text-red-200 text-[10px] font-black uppercase tracking-wider text-left">CPU Cooler is too tall for this case!</p>
+                                                <AlertCircle className="text-red-300" size={16} />
+                                                <p className="text-red-200 font-mono text-[10px] font-medium uppercase tracking-wider text-left">CPU Cooler is too tall for this case!</p>
                                             </div>
                                         )}
                                     </div>
                                 )}
-                                <div className="mt-10 pt-8 border-t border-white/10 relative z-10">
+                                <div className="mt-10 pt-8 border-t border-ivory/10 relative z-10">
                                     <div className="flex justify-between items-end">
                                         <div>
-                                            <span className="text-white/40 font-black uppercase tracking-[0.3em] text-[10px] block mb-2">Investment Value</span>
-                                            <p className="text-5xl font-black text-white tracking-tighter">${totalPrice}</p>
+                                            <span className="font-mono text-[9px] font-medium text-ivory/40 uppercase tracking-[0.3em] block mb-2">Investment Value</span>
+                                            <p className="font-display font-medium text-5xl text-gold tracking-tight">${totalPrice}</p>
                                         </div>
                                         <div className="text-right">
-                                            <p className={`font-bold text-xs uppercase tracking-widest ${isCompatible ? 'text-emerald-400' : 'text-red-400'}`}>
+                                            <p className={`font-medium text-xs uppercase tracking-widest ${isCompatible ? 'text-gold' : 'text-red-300'}`}>
                                                 {isCompatible ? 'Build Verified' : 'Incompatible Build'}
                                             </p>
-                                            <p className="text-white/40 text-[9px] uppercase tracking-widest mt-1 italic">
-                                                {isCompatible ? 'Neural-checked for 2026' : 'Safety Violation Detected'}
+                                            <p className="font-mono text-[9px] font-medium text-ivory/40 uppercase tracking-widest mt-1">
+                                                {isCompatible ? 'Rule-checked for 2026' : 'Safety Violation Detected'}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex gap-4 justify-center">
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <button 
                                     onClick={() => dispatch({ type: 'RESET' })}
-                                    className="bg-indigo-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 flex items-center gap-3"
+                                    className="bg-burgundy text-white px-10 py-4 rounded-full font-medium text-lg hover:bg-burgundy-deep transition-all flex items-center justify-center gap-3"
                                 >
                                     New Build
                                 </button>
                                 <button 
                                     onClick={handleExport}
                                     disabled={exporting}
-                                    className="bg-white border-2 border-slate-100 text-slate-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-slate-50 transition-all flex items-center gap-2 disabled:opacity-50"
+                                    className="bg-transparent border border-ivory/20 text-ivory px-10 py-4 rounded-full font-medium text-lg hover:border-ivory/40 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                                 >
                                     {exporting ? <Loader2 className="animate-spin" size={20} /> : <FileDown size={20} />}
                                     {exporting ? 'Generating...' : 'Print Specs'}
@@ -859,7 +837,7 @@ function Build() {
                                 <Checkout 
                                     amount={totalPrice} 
                                     label="Donate Build Cost"
-                                    className="bg-emerald-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-100 flex items-center gap-3 active:scale-95"
+                                    className="bg-white text-ink px-10 py-4 rounded-full font-medium text-lg hover:bg-ivory transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
                                 />
                             </div>
                         </motion.div>
@@ -867,17 +845,17 @@ function Build() {
                 </AnimatePresence>
 
                 {currentStep > 0 && currentStep !== 9 && (
-                    <div className="mt-12 pt-8 border-t border-slate-100 flex justify-between items-center">
+                    <div className="mt-12 pt-8 border-t border-ink/10 flex justify-between items-center">
                         <button 
                             onClick={() => dispatch({ type: 'PREVIOUS_STEP' })} 
-                            className="flex items-center gap-2 text-slate-400 hover:text-indigo-600 font-black uppercase tracking-[0.2em] text-[10px] transition-all group"
+                            className="flex items-center gap-2 text-ink/40 hover:text-ink font-medium uppercase tracking-[0.2em] text-[10px] transition-all group"
                         >
                             <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
                             Return
                         </button>
                         <div className="text-right">
-                            <p className="text-slate-400 font-black uppercase tracking-[0.2em] text-[9px] mb-1">Configuration Total</p>
-                            <p className="text-4xl font-black text-indigo-600 font-mono tracking-tighter flex items-center gap-1">
+                            <p className="font-mono text-[9px] font-medium uppercase tracking-[0.2em] text-ink/40 mb-1">Configuration Total</p>
+                            <p className="font-display font-medium text-4xl text-burgundy tracking-tight flex items-center gap-1">
                                 <span className="text-xl opacity-40">$</span>
                                 {totalPrice}
                             </p>

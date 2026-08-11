@@ -3,18 +3,23 @@
 @tailwind utilities;
 
 :root {
-  background-color: #ffffff;
-  color: #0f172a;
+  background-color: #f6f3ec;
+  color: #1a1714;
 }
 
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #ffffff;
+  background-color: #f6f3ec;
 }
 
 .glass-panel {
-  @apply bg-white/80 backdrop-blur-xl border border-white shadow-2xl shadow-indigo-100/50;
+  @apply bg-white/85 backdrop-blur-xl border border-ink/5 shadow-luxury-panel;
+}
+
+.hairline-gold {
+  background: linear-gradient(90deg, transparent, rgba(176, 141, 63, 0.5), transparent);
+  height: 1px;
 }
 
 .cyber-grid {
@@ -29,7 +34,7 @@ body {
 }
 
 .glow-btn:hover {
-  @apply shadow-[0_0_25px_rgba(99,102,241,0.3)] -translate-y-0.5;
+  @apply shadow-[0_0_25px_rgba(158,27,50,0.25)] -translate-y-0.5;
 }
 
 /* Custom Scrollbar */
@@ -37,10 +42,10 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-slate-50;
+  @apply bg-ivory;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-indigo-500/20 rounded-full hover:bg-indigo-400 transition-colors;
+  @apply bg-ink/20 rounded-full hover:bg-ink/40 transition-colors;
 }
 
 /* Page transitions */
@@ -51,4 +56,116 @@ body {
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Hero visual animations ---- */
+@keyframes fanSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmerMove {
+  0% { transform: translateX(-160%) skewX(-18deg); }
+  60%, 100% { transform: translateX(320%) skewX(-18deg); }
+}
+
+@keyframes rgbFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes scanMove {
+  0% { top: -12%; }
+  100% { top: 112%; }
+}
+
+@keyframes blinkDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+@keyframes tickPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.animate-fan {
+  animation: fanSpin 1.6s linear infinite;
+}
+
+.animate-shimmer {
+  animation: shimmerMove 4s ease-in-out infinite;
+}
+
+.animate-rgb {
+  background-size: 200% 100%;
+  animation: rgbFlow 4s linear infinite;
+}
+
+.animate-scan {
+  animation: scanMove 8s linear infinite;
+}
+
+.animate-blink {
+  animation: blinkDot 1.4s ease-in-out infinite;
+}
+
+.animate-tick {
+  animation: tickPulse 2.4s ease-in-out infinite;
+}
+
+.fan-blades {
+  background: conic-gradient(from 0deg,
+    rgba(148, 163, 184, 0.95) 0deg 42deg,
+    rgba(148, 163, 184, 0.1) 42deg 60deg,
+    rgba(148, 163, 184, 0.95) 60deg 102deg,
+    rgba(148, 163, 184, 0.1) 102deg 120deg,
+    rgba(148, 163, 184, 0.95) 120deg 162deg,
+    rgba(148, 163, 184, 0.1) 162deg 180deg,
+    rgba(148, 163, 184, 0.95) 180deg 222deg,
+    rgba(148, 163, 184, 0.1) 222deg 240deg,
+    rgba(148, 163, 184, 0.95) 240deg 282deg,
+    rgba(148, 163, 184, 0.1) 282deg 300deg,
+    rgba(148, 163, 184, 0.95) 300deg 342deg,
+    rgba(148, 163, 184, 0.1) 342deg 360deg);
+}
+
+.hero-tower {
+  background: linear-gradient(160deg, #1e293b 0%, #0f172a 45%, #1e1b4b 100%);
+}
+
+.hero-tower::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(160deg, rgba(255,255,255,0.25), rgba(99,102,241,0.35) 40%, rgba(168,85,247,0.25), transparent 75%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Film grain for the paper background */
+.grain {
+  position: relative;
+}
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+}
+
+/* Fine grid inside the schematic panel */
+.schematic-grid {
+  background-size: 26px 26px;
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
 }

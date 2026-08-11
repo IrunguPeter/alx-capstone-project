@@ -6,18 +6,32 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Fraunces', 'Georgia', 'serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+      },
       colors: {
-        cyber: {
-          dark: '#0a0b10',
-          blue: '#00f2ff',
-          indigo: '#6366f1',
-          purple: '#a855f7',
-        }
+        ivory: '#f6f3ec',
+        paper: '#ffffff',
+        ink: {
+          DEFAULT: '#1a1714',
+          soft: '#6f685e',
+          faint: '#a49c90',
+        },
+        burgundy: {
+          DEFAULT: '#9e1b32',
+          deep: '#7c1526',
+          tint: '#f5e8ea',
+        },
+        gold: {
+          DEFAULT: '#b08d3f',
+          faint: '#e9dfc8',
+        },
       },
       boxShadow: {
-        'glow-blue': '0 0 15px rgba(0, 242, 255, 0.4)',
-        'glow-indigo': '0 0 20px rgba(99, 102, 241, 0.3)',
-        'glass': 'inset 0 0 0 1px rgba(255, 255, 255, 0.1)',
+        'luxury-card': '0 24px 48px -24px rgba(26, 23, 20, 0.18)',
+        'luxury-panel': '0 40px 80px -48px rgba(26, 23, 20, 0.28)',
       },
       backgroundImage: {
         'cyber-gradient': 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%)',
